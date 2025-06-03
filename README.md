@@ -59,8 +59,8 @@ Enhanced OF Bot v2.0/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/enhanced-of-bot.git
-cd enhanced-of-bot
+git clone https://github.com/PushOk1546/enhancedofbotgit.git
+cd enhancedofbotgit
 ```
 
 2. **Create virtual environment**
@@ -239,12 +239,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Troubleshooting](docs/troubleshooting.md)
 
 ### Community
-- [Issues](https://github.com/yourusername/enhanced-of-bot/issues)
-- [Discussions](https://github.com/yourusername/enhanced-of-bot/discussions)
-- [Wiki](https://github.com/yourusername/enhanced-of-bot/wiki)
+- [Issues](https://github.com/PushOk1546/enhancedofbotgit/issues)
+- [Discussions](https://github.com/PushOk1546/enhancedofbotgit/discussions)
+- [Wiki](https://github.com/PushOk1546/enhancedofbotgit/wiki)
 
 ---
 
 **⚡ Built with modern Python practices and enterprise-grade architecture**
 
-*Enhanced OF Bot v2.0 - Professional, scalable, and production-ready conversation assistant.* 
+*Enhanced OF Bot v2.0 - Professional, scalable, and production-ready conversation assistant.*
