@@ -1,3 +1,64 @@
+# Ultimate Enterprise Bot - .gitignore
+# Comprehensive gitignore for secure telegram bot development
+
+# ================================================================
+# КРИТИЧЕСКИЕ ФАЙЛЫ БЕЗОПАСНОСТИ (НИКОГДА НЕ КОММИТИТЬ!)
+# ================================================================
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.staging
+.env.development
+
+# Bot tokens and API keys
+bot_token.txt
+api_keys.txt
+secrets.json
+credentials.json
+
+# TON and crypto wallets
+*.wallet
+*.key
+wallet.json
+ton_keys/
+private_keys/
+
+# ================================================================
+# ПОЛЬЗОВАТЕЛЬСКИЕ ДАННЫЕ
+# ================================================================
+
+# User databases and storage
+users.json
+premium_users.json
+user_data/
+chat_logs/
+conversation_history/
+
+# Cache files
+response_cache.json
+cache/
+*.cache
+
+# Backup files
+backups/
+*.backup
+*.bak
+backup_*.tar.gz
+backup_*.zip
+
+# Monitoring and logs
+monitoring.db
+monitoring.log
+error_logs/
+*.log
+logs/
+
+# ================================================================
+# PYTHON ФАЙЛЫ
+# ================================================================
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -89,7 +150,7 @@ ipython_config.py
 #   However, in case of collaboration, if having platform-specific dependencies or dependencies
 #   having no cross-platform support, pipenv may install dependencies that don't work, or not
 #   install all needed dependencies.
-#Pipfile.lock
+Pipfile.lock
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
@@ -128,49 +189,184 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Bot-specific sensitive files
-.env
-config.py
-bot_config.py
-*.token
-*.key
-.env.local
-.env.production
+# ================================================================
+# IDE И РЕДАКТОРЫ
+# ================================================================
 
-# Data files
-data/
-logs/
-*.db
-*.sqlite
-*.json
-cache.json
-users.json
-user_data/
-chat_history/
-
-# IDE files
+# Visual Studio Code
 .vscode/
+*.code-workspace
+
+# PyCharm
 .idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
 *.swp
 *.swo
 *~
 
-# OS files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ================================================================
+# ОПЕРАЦИОННЫЕ СИСТЕМЫ
+# ================================================================
+
+# Windows
 Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ================================================================
+# ВРЕМЕННЫЕ И СИСТЕМНЫЕ ФАЙЛЫ
+# ================================================================
 
 # Temporary files
+*.tmp
+*.temp
 temp/
 tmp/
-*.tmp
-*.bak
 
-# Bot runtime files
-session_*
-*.session
-bot_state.pkl 
+# System files
+*.pid
+*.lock
+*.sock
+
+# ================================================================
+# СПЕЦИФИЧНЫЕ ДЛЯ ПРОЕКТА
+# ================================================================
+
+# Test files
+test_data/
+test_results/
+test_outputs/
+
+# Development files
+dev_notes.md
+TODO.md
+scratch.py
+debug.py
+test.py
+
+# Local configuration overrides
+config_local.py
+local_settings.py
+
+# Media files (if any)
+media/
+uploads/
+downloads/
+
+# Documentation builds
+docs/build/
+documentation/_build/
+
+# Performance test results
+performance_results/
+benchmarks/
+
+# ================================================================
+# ИСКЛЮЧЕНИЯ (файлы, которые НУЖНО коммитить)
+# ================================================================
+
+# Разрешаем шаблоны конфигурации
+!.env.template
+!config.template.py
+!example_config.py
+
+# Разрешаем документацию
+!README.md
+!*.md
+!docs/
+!CHANGELOG.md
+!LICENSE
+
+# Разрешаем основные файлы проекта
+!requirements.txt
+!setup.py
+!pyproject.toml
+
+# Разрешаем структуру директорий (с пустыми .gitkeep файлами)
+!.gitkeep
+
+# ================================================================
+# ДОПОЛНИТЕЛЬНЫЕ SECURITY ПРАВИЛА
+# ================================================================
+
+# Блокируем любые файлы с паролями в названии
+*password*
+*secret*
+*private*
+*confidential*
+
+# Блокируем database dumps
+*.sql
+*.db
+*.sqlite
+*.sqlite3
+
+# Блокируем архивы с данными
+user_data_*.zip
+backup_users_*
+export_*.json
+
+# ================================================================
+# ЗАМЕТКИ ДЛЯ РАЗРАБОТЧИКОВ
+# ================================================================
+
+# ВАЖНО: 
+# 1. Никогда не коммитьте реальные токены или API ключи
+# 2. Используйте .env.template для примеров конфигурации
+# 3. Регулярно проверяйте историю коммитов на наличие секретов
+# 4. Используйте git-secrets или аналогичные инструменты
+# 5. При работе с production данными - используйте отдельные ветки 

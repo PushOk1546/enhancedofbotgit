@@ -1,373 +1,178 @@
 """
-Professional Adult Content Templates Module
-Handles template-based responses for OF bot with proper categorization.
+Adult Content Templates - Explicit Version for Maximum Monetization
+Explicit templates organized by intensity for premium conversions
 """
 
-from typing import Dict, List, Optional, Tuple, Any
-from enum import Enum
-from dataclasses import dataclass, field
-from abc import ABC, abstractmethod
 import random
-import asyncio
-from datetime import datetime
+from enum import Enum
+from dataclasses import dataclass
+from typing import List, Dict, Optional
 
 class ExplicitnessLevel(Enum):
-    """Levels of content explicitness"""
-    SOFT = 1        # Romantic, flirty
-    MEDIUM = 2      # Suggestive, teasing
-    EXPLICIT = 3    # Direct, sexual
-    INTENSE = 4     # Very explicit
-    EXTREME = 5     # Maximum intensity
+    SOFT = 1      # Flirty, suggestive 
+    MEDIUM = 2    # Sexual tension, teasing
+    EXPLICIT = 3  # Direct sexual content
+    INTENSE = 4   # Very explicit, fetish content
+    EXTREME = 5   # Maximum explicitness
 
 class ContentMode(Enum):
-    """Communication modes"""
-    CHAT = "chat"           # Casual conversation
-    FLIRT = "flirt"         # Flirtatious interaction
-    SEXTING = "sexting"     # Explicit messaging
+    CHAT = "chat"
+    FLIRT = "flirt" 
+    SEXTING = "sexting"
 
 class TemplateCategory(Enum):
-    """Template categories for organization"""
+    """Template categories for enhanced bot compatibility"""
     GREETING = "greeting"
-    FLIRT = "flirt"
-    TEASE = "tease"
-    PPV_PROMO = "ppv_promo"
-    APPRECIATION = "appreciation"
-    ESCALATION = "escalation"
-    CONTENT_OFFER = "content_offer"
-    PLAYFUL = "playful"
-    INTIMATE = "intimate"
-    THANK_YOU = "thank_you"
+    COMPLIMENT = "compliment"
+    SEDUCTIVE = "seductive"
+    EXPLICIT = "explicit"
+    CONVERSION = "conversion"
+    PREMIUM_PREVIEW = "premium_preview"
 
 @dataclass
-class ContentTemplate:
-    """Individual content template with metadata"""
+class AdultTemplate:
     text: str
-    category: TemplateCategory
-    explicitness: ExplicitnessLevel
+    level: ExplicitnessLevel
     mode: ContentMode
-    tags: List[str] = field(default_factory=list)
-    variables: List[str] = field(default_factory=list)  # {name}, {amount}, etc.
-    context_keywords: List[str] = field(default_factory=list)
-    quality_score: float = 1.0  # User feedback score
+    premium_only: bool = False
+    conversion_focused: bool = False
+    category: TemplateCategory = TemplateCategory.GREETING
 
-class TemplateStrategy(ABC):
-    """Abstract strategy for template selection"""
-    
-    @abstractmethod
-    async def select_template(
-        self, 
-        templates: List[ContentTemplate], 
-        context: Dict[str, Any]
-    ) -> Optional[ContentTemplate]:
-        pass
-
-class RandomStrategy(TemplateStrategy):
-    """Random template selection strategy"""
-    
-    async def select_template(
-        self, 
-        templates: List[ContentTemplate], 
-        context: Dict[str, Any]
-    ) -> Optional[ContentTemplate]:
-        if not templates:
-            return None
-        return random.choice(templates)
-
-class QualityBasedStrategy(TemplateStrategy):
-    """Quality-weighted template selection"""
-    
-    async def select_template(
-        self, 
-        templates: List[ContentTemplate], 
-        context: Dict[str, Any]
-    ) -> Optional[ContentTemplate]:
-        if not templates:
-            return None
-        
-        # Weight by quality score
-        weights = [template.quality_score for template in templates]
-        return random.choices(templates, weights=weights)[0]
-
-class ContextAwareStrategy(TemplateStrategy):
-    """Context-aware template selection"""
-    
-    async def select_template(
-        self, 
-        templates: List[ContentTemplate], 
-        context: Dict[str, Any]
-    ) -> Optional[ContentTemplate]:
-        if not templates:
-            return None
-        
-        user_message = context.get('user_message', '').lower()
-        scored_templates = []
-        
-        for template in templates:
-            score = template.quality_score
-            
-            # Boost score for matching context keywords
-            for keyword in template.context_keywords:
-                if keyword.lower() in user_message:
-                    score += 0.5
-            
-            scored_templates.append((template, score))
-        
-        # Sort by score and add randomness
-        scored_templates.sort(key=lambda x: x[1], reverse=True)
-        top_templates = [t[0] for t in scored_templates[:3]]
-        
-        return random.choice(top_templates)
-
-class AdultTemplateRepository:
-    """Repository for managing adult content templates"""
-    
+class AdultTemplateManager:
     def __init__(self):
-        self.templates: Dict[TemplateCategory, List[ContentTemplate]] = {}
-        self._load_default_templates()
-    
-    def _load_default_templates(self):
-        """Load default template collection"""
+        self.templates = self._load_templates()
         
-        # GREETING templates
-        self.templates[TemplateCategory.GREETING] = [
-            ContentTemplate(
-                "Привет, красавчик! 😘 Как дела?",
-                TemplateCategory.GREETING,
-                ExplicitnessLevel.SOFT,
-                ContentMode.CHAT,
-                tags=["casual", "friendly"],
-                context_keywords=["привет", "хай", "hello"]
-            ),
-            ContentTemplate(
-                "Ммм, соскучилась по тебе 💋 Что делаешь?",
-                TemplateCategory.GREETING,
-                ExplicitnessLevel.MEDIUM,
-                ContentMode.FLIRT,
-                tags=["missing", "intimate"],
-                context_keywords=["привет", "дела"]
-            ),
-            ContentTemplate(
-                "Детка, я так хочу тебя прямо сейчас... 🔥",
-                TemplateCategory.GREETING,
-                ExplicitnessLevel.EXPLICIT,
-                ContentMode.SEXTING,
-                tags=["desire", "direct"],
-                context_keywords=["привет", "хочу"]
-            )
+    def _load_templates(self) -> Dict[ExplicitnessLevel, Dict[ContentMode, List[AdultTemplate]]]:
+        """Load explicit templates organized by level and mode"""
+        
+        templates = {
+            ExplicitnessLevel.SOFT: {
+                ContentMode.CHAT: [
+                    AdultTemplate("Hey gorgeous 😘 How's your day treating you?", ExplicitnessLevel.SOFT, ContentMode.CHAT, category=TemplateCategory.GREETING),
+                    AdultTemplate("You look absolutely stunning today baby 🔥", ExplicitnessLevel.SOFT, ContentMode.CHAT, category=TemplateCategory.COMPLIMENT),
+                    AdultTemplate("Can't stop thinking about your beautiful smile 😍", ExplicitnessLevel.SOFT, ContentMode.CHAT, category=TemplateCategory.COMPLIMENT),
+                ],
+                ContentMode.FLIRT: [
+                    AdultTemplate("You're making me feel things I shouldn't be feeling right now 😈", ExplicitnessLevel.SOFT, ContentMode.FLIRT, category=TemplateCategory.SEDUCTIVE),
+                    AdultTemplate("I love how you make my heart race baby 💓", ExplicitnessLevel.SOFT, ContentMode.FLIRT, category=TemplateCategory.SEDUCTIVE),
+                    AdultTemplate("Your energy is so intoxicating... I'm drawn to you 🌹", ExplicitnessLevel.SOFT, ContentMode.FLIRT, category=TemplateCategory.SEDUCTIVE),
+                ]
+            },
+            
+            ExplicitnessLevel.MEDIUM: {
+                ContentMode.FLIRT: [
+                    AdultTemplate("I can't help but imagine what you're wearing right now 😏", ExplicitnessLevel.MEDIUM, ContentMode.FLIRT, category=TemplateCategory.SEDUCTIVE),
+                    AdultTemplate("You're driving me crazy with those looks... I want more 🔥", ExplicitnessLevel.MEDIUM, ContentMode.FLIRT, category=TemplateCategory.SEDUCTIVE),
+                    AdultTemplate("I'm getting distracted thinking about your body against mine 💋", ExplicitnessLevel.MEDIUM, ContentMode.FLIRT, category=TemplateCategory.SEDUCTIVE),
+                ],
+                ContentMode.SEXTING: [
+                    AdultTemplate("I wish I could feel your hands all over me right now... 🔥", ExplicitnessLevel.MEDIUM, ContentMode.SEXTING, category=TemplateCategory.SEDUCTIVE),
+                    AdultTemplate("You're making me so hot and bothered baby 😈", ExplicitnessLevel.MEDIUM, ContentMode.SEXTING, category=TemplateCategory.SEDUCTIVE),
+                    AdultTemplate("I want to show you exactly what you do to me... 💦", ExplicitnessLevel.MEDIUM, ContentMode.SEXTING, category=TemplateCategory.SEDUCTIVE),
+                ]
+            },
+            
+            ExplicitnessLevel.EXPLICIT: {
+                ContentMode.SEXTING: [
+                    AdultTemplate("I'm touching myself thinking about you right now... wish it was your hands instead 🔥💦", ExplicitnessLevel.EXPLICIT, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                    AdultTemplate("I want to feel every inch of your body against mine... take me hard baby 😈", ExplicitnessLevel.EXPLICIT, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                    AdultTemplate("You make me so wet... I need you inside me right now 💦🔥", ExplicitnessLevel.EXPLICIT, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                    AdultTemplate("I'm imagining your cock sliding deep inside me... fuck me harder 😈💦", ExplicitnessLevel.EXPLICIT, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                    AdultTemplate("I want to taste every drop of you baby... make me your dirty little slut 👅💦", ExplicitnessLevel.EXPLICIT, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                ]
+            },
+            
+            ExplicitnessLevel.INTENSE: {
+                ContentMode.SEXTING: [
+                    AdultTemplate("I want you to pin me down and fuck me like the dirty whore I am 🔥💦", ExplicitnessLevel.INTENSE, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                    AdultTemplate("Use my holes however you want daddy... I'm your personal fucktoy 😈👅", ExplicitnessLevel.INTENSE, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                    AdultTemplate("I'm your submissive little slut... punish me for being so naughty 🔥💦", ExplicitnessLevel.INTENSE, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                    AdultTemplate("Choke me while you pound my tight pussy... I want to be your dirty cumslut 😈💦", ExplicitnessLevel.INTENSE, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                ]
+            },
+            
+            ExplicitnessLevel.EXTREME: {
+                ContentMode.SEXTING: [
+                    AdultTemplate("Destroy my holes daddy... use me like the worthless fuckdoll I am 🔥💦", ExplicitnessLevel.EXTREME, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                    AdultTemplate("I want you and your friends to gangbang me until I'm a cum-covered mess 😈💦", ExplicitnessLevel.EXTREME, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                    AdultTemplate("Fill all my holes at once... I need to be your personal cumdump 👅💦", ExplicitnessLevel.EXTREME, ContentMode.SEXTING, premium_only=True, category=TemplateCategory.EXPLICIT),
+                ]
+            }
+        }
+        
+        # Add conversion-focused templates (premium upsells)
+        conversion_templates = [
+            AdultTemplate("Mmm baby... want to see more? 💋 Upgrade to premium for my exclusive content 🔥", ExplicitnessLevel.SOFT, ContentMode.CHAT, conversion_focused=True, category=TemplateCategory.CONVERSION),
+            AdultTemplate("I'm getting so horny talking to you... but my really dirty stuff is premium only 😈💦", ExplicitnessLevel.MEDIUM, ContentMode.FLIRT, conversion_focused=True, category=TemplateCategory.CONVERSION),
+            AdultTemplate("This is just a taste baby... upgrade now to unlock my nastiest fantasies 🔥💎", ExplicitnessLevel.EXPLICIT, ContentMode.SEXTING, conversion_focused=True, category=TemplateCategory.CONVERSION),
+            AdultTemplate("Free trial ending soon! Don't miss out on my exclusive XXX content 💦👑", ExplicitnessLevel.MEDIUM, ContentMode.CHAT, conversion_focused=True, category=TemplateCategory.CONVERSION),
         ]
         
-        # FLIRT templates
-        self.templates[TemplateCategory.FLIRT] = [
-            ContentTemplate(
-                "Ты такой милый 😊 Расскажи мне что-нибудь интересное",
-                TemplateCategory.FLIRT,
-                ExplicitnessLevel.SOFT,
-                ContentMode.CHAT,
-                tags=["compliment", "interest"],
-                context_keywords=["расскажи", "интересно"]
-            ),
-            ContentTemplate(
-                "Знаешь, ты мне очень нравишься... 😏 Хочешь увидеть что-то особенное?",
-                TemplateCategory.FLIRT,
-                ExplicitnessLevel.MEDIUM,
-                ContentMode.FLIRT,
-                tags=["attraction", "tease"],
-                context_keywords=["нравишься", "особенное"]
-            ),
-            ContentTemplate(
-                "Мм, представляю как ты меня трогаешь... 🔥 Хочешь мои фото?",
-                TemplateCategory.FLIRT,
-                ExplicitnessLevel.EXPLICIT,
-                ContentMode.SEXTING,
-                tags=["imagination", "photos"],
-                context_keywords=["трогаешь", "фото", "хочешь"]
-            )
-        ]
-        
-        # PPV_PROMO templates
-        self.templates[TemplateCategory.PPV_PROMO] = [
-            ContentTemplate(
-                "У меня есть кое-что особенное для тебя 💝 Всего за ${amount}",
-                TemplateCategory.PPV_PROMO,
-                ExplicitnessLevel.SOFT,
-                ContentMode.CHAT,
-                tags=["special", "offer"],
-                variables=["amount"],
-                context_keywords=["особенное", "покупка"]
-            ),
-            ContentTemplate(
-                "Детка, хочешь увидеть меня в новом белье? 😈 ${amount} за эксклюзив",
-                TemplateCategory.PPV_PROMO,
-                ExplicitnessLevel.MEDIUM,
-                ContentMode.FLIRT,
-                tags=["lingerie", "exclusive"],
-                variables=["amount"],
-                context_keywords=["белье", "эксклюзив"]
-            ),
-            ContentTemplate(
-                "Мм, сняла для тебя очень горячее видео... 🔥🔥 ${amount} и оно твоё",
-                TemplateCategory.PPV_PROMO,
-                ExplicitnessLevel.EXPLICIT,
-                ContentMode.SEXTING,
-                tags=["video", "hot"],
-                variables=["amount"],
-                context_keywords=["видео", "горячее"]
-            )
-        ]
-        
-        # APPRECIATION templates
-        self.templates[TemplateCategory.APPRECIATION] = [
-            ContentTemplate(
-                "Спасибо, милый! 💕 Ты такой щедрый",
-                TemplateCategory.APPRECIATION,
-                ExplicitnessLevel.SOFT,
-                ContentMode.CHAT,
-                tags=["thanks", "generous"],
-                context_keywords=["спасибо", "щедрый"]
-            ),
-            ContentTemplate(
-                "Ммм, обожаю таких щедрых мужчин... 😘 Хочешь бонус?",
-                TemplateCategory.APPRECIATION,
-                ExplicitnessLevel.MEDIUM,
-                ContentMode.FLIRT,
-                tags=["love", "bonus"],
-                context_keywords=["обожаю", "бонус"]
-            ),
-            ContentTemplate(
-                "За это ты заслуживаешь особой награды... 🔥 Покажу тебе всё",
-                TemplateCategory.APPRECIATION,
-                ExplicitnessLevel.EXPLICIT,
-                ContentMode.SEXTING,
-                tags=["reward", "show"],
-                context_keywords=["награда", "покажу"]
-            )
-        ]
-        
-        # TEASE templates
-        self.templates[TemplateCategory.TEASE] = [
-            ContentTemplate(
-                "Хм, интересно... 😏 А что ты готов сделать ради этого?",
-                TemplateCategory.TEASE,
-                ExplicitnessLevel.SOFT,
-                ContentMode.FLIRT,
-                tags=["curiosity", "challenge"],
-                context_keywords=["интересно", "готов"]
-            ),
-            ContentTemplate(
-                "Ой, а ты такой нетерпеливый... 😈 Но сначала покажи мне свою щедрость",
-                TemplateCategory.TEASE,
-                ExplicitnessLevel.MEDIUM,
-                ContentMode.FLIRT,
-                tags=["impatient", "generosity"],
-                context_keywords=["нетерпеливый", "щедрость"]
-            ),
-            ContentTemplate(
-                "Мм, хочешь меня? 🔥 Докажи насколько сильно...",
-                TemplateCategory.TEASE,
-                ExplicitnessLevel.EXPLICIT,
-                ContentMode.SEXTING,
-                tags=["want", "prove"],
-                context_keywords=["хочешь", "докажи"]
-            )
-        ]
-
-    def get_templates(
-        self,
-        category: Optional[TemplateCategory] = None,
-        explicitness: Optional[ExplicitnessLevel] = None,
-        mode: Optional[ContentMode] = None,
-        tags: Optional[List[str]] = None
-    ) -> List[ContentTemplate]:
-        """Get filtered templates"""
-        
-        if category:
-            templates = self.templates.get(category, [])
-        else:
-            templates = []
-            for cat_templates in self.templates.values():
-                templates.extend(cat_templates)
-        
-        # Apply filters
-        if explicitness:
-            templates = [t for t in templates if t.explicitness == explicitness]
-        
-        if mode:
-            templates = [t for t in templates if t.mode == mode]
-        
-        if tags:
-            templates = [t for t in templates if any(tag in t.tags for tag in tags)]
-        
+        # Add conversion templates to appropriate levels
+        for template in conversion_templates:
+            if template.level not in templates:
+                templates[template.level] = {}
+            if template.mode not in templates[template.level]:
+                templates[template.level][template.mode] = []
+            templates[template.level][template.mode].append(template)
+            
         return templates
-    
-    def add_template(self, template: ContentTemplate):
-        """Add new template to repository"""
-        if template.category not in self.templates:
-            self.templates[template.category] = []
-        self.templates[template.category].append(template)
-    
-    def update_quality_score(self, template_text: str, score: float):
-        """Update template quality based on user feedback"""
-        for category_templates in self.templates.values():
-            for template in category_templates:
-                if template.text == template_text:
-                    template.quality_score = max(0.1, min(2.0, score))
-                    break
 
-class FallbackSystem:
-    """Fallback system when AI refuses or fails"""
-    
-    def __init__(self, repository: AdultTemplateRepository):
-        self.repository = repository
-        self.safe_fallbacks = {
-            ExplicitnessLevel.SOFT: [
-                "Давай поговорим о чём-то приятном 😊",
-                "Расскажи мне о себе, интересно узнать тебя лучше 💕",
-                "Как прошёл твой день? 🌟"
-            ],
-            ExplicitnessLevel.MEDIUM: [
-                "Хочешь узнать мои секреты? 😏",
-                "У меня есть кое-что особенное... 💝",
-                "Ты мне нравишься, давай общаться 😘"
-            ],
-            ExplicitnessLevel.EXPLICIT: [
-                "Покажи мне свою щедрость, и я удивлю тебя 🔥",
-                "Хочешь эксклюзивный контент? Пиши в DM 💋",
-                "Для таких как ты у меня особые предложения 😈"
-            ]
-        }
-    
-    async def get_fallback_response(
-        self,
-        explicitness: ExplicitnessLevel,
-        context: Dict[str, Any]
-    ) -> str:
-        """Get safe fallback response"""
+    def get_template(self, level: ExplicitnessLevel, mode: ContentMode, 
+                    is_premium: bool = False, force_conversion: bool = False) -> str:
+        """Get template based on user's level and premium status"""
         
-        # Try template-based fallback first
-        templates = self.repository.get_templates(explicitness=explicitness)
-        if templates:
-            template = random.choice(templates)
-            return self._process_template_variables(template.text, context)
+        # Force conversion template if user approaching limit
+        if force_conversion:
+            conversion_templates = []
+            for lvl_templates in self.templates.values():
+                for mode_templates in lvl_templates.values():
+                    conversion_templates.extend([t for t in mode_templates if t.conversion_focused])
+            if conversion_templates:
+                return random.choice(conversion_templates).text
         
-        # Use hardcoded safe fallbacks
-        fallbacks = self.safe_fallbacks.get(explicitness, self.safe_fallbacks[ExplicitnessLevel.SOFT])
-        return random.choice(fallbacks)
-    
-    def _process_template_variables(self, text: str, context: Dict[str, Any]) -> str:
-        """Process template variables like {name}, {amount}"""
+        # Get templates for specified level and mode
+        if level in self.templates and mode in self.templates[level]:
+            available_templates = self.templates[level][mode]
+            
+            # Filter by premium status
+            if not is_premium:
+                available_templates = [t for t in available_templates if not t.premium_only]
+            
+            if available_templates:
+                return random.choice(available_templates).text
         
-        # Replace common variables
-        replacements = {
-            'name': context.get('user_name', 'красавчик'),
-            'amount': context.get('amount', '10'),
-            'time': datetime.now().strftime('%H:%M')
-        }
-        
-        for var, value in replacements.items():
-            text = text.replace(f'{{{var}}}', str(value))
-        
-        return text
+        # Fallback to conversion message if no templates available
+        return "Want more exclusive content? 💎 Upgrade to premium for unlimited access! 🔥"
 
-# Global repository instance
-adult_templates_repo = AdultTemplateRepository()
-fallback_system = FallbackSystem(adult_templates_repo) 
+    def get_template_by_category(self, category: TemplateCategory) -> str:
+        """Get template by specific category"""
+        category_templates = []
+        for lvl_templates in self.templates.values():
+            for mode_templates in lvl_templates.values():
+                category_templates.extend([t for t in mode_templates if t.category == category])
+        
+        if category_templates:
+            return random.choice(category_templates).text
+        return "Hey there! 😘"
+
+    def get_premium_preview(self) -> str:
+        """Get a preview of premium content to entice upgrades"""
+        previews = [
+            "🔥 PREMIUM PREVIEW 🔥\n'I want you to...' [Content locked] 💎\n\nUpgrade now to unlock my dirtiest fantasies!",
+            "💦 VIP EXCLUSIVE 💦\n'Fuck me like...' [Premium only] 👑\n\nJoin VIP for unlimited explicit chat!",
+            "😈 ULTIMATE ACCESS 😈\n'I'm your dirty...' [Ultimate tier] 🔥\n\nGet Ultimate for my nastiest roleplay!"
+        ]
+        return random.choice(previews)
+
+    def get_upsell_message(self, current_tier: str) -> str:
+        """Get targeted upsell message based on current tier"""
+        upsells = {
+            "free_trial": "🔥 Your trial is almost over! Upgrade to PREMIUM for unlimited dirty talk - only ⭐150 Stars! 💎",
+            "premium": "💎 Want even dirtier content? Upgrade to VIP for exclusive fetish chat - ⭐250 Stars! 👑", 
+            "vip": "👑 Ready for the ultimate experience? ULTIMATE tier has my nastiest content - ⭐500 Stars! 🔥",
+        }
+        return upsells.get(current_tier, "💰 Upgrade now for exclusive adult content! 🔥")
+
+# Global template manager
+template_manager = AdultTemplateManager() 
