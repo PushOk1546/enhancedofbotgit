@@ -175,4 +175,47 @@ class AdultTemplateManager:
         return upsells.get(current_tier, "💰 Upgrade now for exclusive adult content! 🔥")
 
 # Global template manager
-template_manager = AdultTemplateManager() 
+template_manager = AdultTemplateManager()
+
+# Compatibility class for enhanced_commands.py
+class AdultTemplateRepository:
+    """Compatibility class for enhanced bot features"""
+    
+    def __init__(self):
+        self.manager = template_manager
+    
+    def get_template_by_category_and_level(self, category: str, level: int = 1) -> str:
+        """Get template by category and explicitness level"""
+        try:
+            # Convert string category to enum
+            category_map = {
+                "greeting": TemplateCategory.GREETING,
+                "compliment": TemplateCategory.COMPLIMENT,
+                "seductive": TemplateCategory.SEDUCTIVE,
+                "explicit": TemplateCategory.EXPLICIT,
+                "conversion": TemplateCategory.CONVERSION,
+                "premium_preview": TemplateCategory.PREMIUM_PREVIEW
+            }
+            
+            template_category = category_map.get(category.lower(), TemplateCategory.GREETING)
+            return self.manager.get_template_by_category(template_category)
+        except:
+            return "Hey there gorgeous! 😘 How can I make your day better?"
+    
+    def get_random_template(self, mode: str = "chat", level: int = 1) -> str:
+        """Get random template by mode and level"""
+        try:
+            # Convert parameters to enums
+            content_mode = ContentMode.CHAT if mode == "chat" else ContentMode.FLIRT
+            explicitness_level = ExplicitnessLevel(min(level, 5))
+            
+            return self.manager.get_template(explicitness_level, content_mode)
+        except:
+            return "You're looking amazing today! 🔥"
+    
+    def get_premium_content(self) -> str:
+        """Get premium content preview"""
+        return self.manager.get_premium_preview()
+
+# Global repository instance for compatibility
+adult_template_repository = AdultTemplateRepository() 

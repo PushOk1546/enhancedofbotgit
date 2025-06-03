@@ -1,95 +1,35 @@
-# Основные зависимости для Telegram бота OnlyFans Assistant
-# Обновленная версия с оптимизированными зависимостями и security улучшениями
+# Ultimate Enterprise Bot - Requirements
+# Оптимизированные зависимости без конфликтов
 
-# Core Bot Dependencies
-pyTelegramBotAPI==4.14.0
-telebot==0.0.5
+# === КРИТИЧЕСКИЕ ЗАВИСИМОСТИ ===
+pyTelegramBotAPI>=4.14.0
+requests>=2.28.0
+psutil>=5.9.0
+packaging>=21.0
 
-# AI and API Client
-groq==0.4.0
-openai==1.6.1
-httpx==0.25.2
-aiohttp==3.9.1
+# === AI И API ===
+groq>=0.4.0
 
-# Async Support
-asyncio-throttle==1.0.2
-aiofiles==23.2.1
+# === КОНФИГУРАЦИЯ ===
+python-dotenv>=1.0.1
 
-# Data Processing
-python-dotenv==1.0.0
-pydantic==2.5.2
-dataclasses-json==0.6.3
-
-# Utilities
-typing-extensions==4.8.0
-python-dateutil==2.8.2
-
-# Testing (Development)
-pytest==7.4.3
-pytest-asyncio==0.21.1
-pytest-cov==4.1.0
-pytest-mock==3.12.0
-
-# Code Quality (Development)
-black==23.11.0
-flake8==6.1.0
-mypy==1.7.1
-isort==5.12.0
-
-# Logging and Monitoring
-structlog==23.2.0
-colorlog==6.8.0
-
-# Performance
-cachetools==5.3.2
-lru-dict==1.3.0
-
-# Security
-cryptography==41.0.7
-bcrypt==4.1.2
-
-# Конфигурация и переменные окружения
-python-dotenv==1.0.1
-
-# Валидация данных и типобезопасность
-pydantic>=2.5.0,<3.0.0
-
-# Логирование
-python-json-logger==2.0.7
-
-# Планировщик задач
-APScheduler==3.10.4
-
-# Повторные попытки при ошибках
-tenacity==8.2.3
-
-# Дополнительные зависимости для стабильности
-python-dateutil==2.8.2
-
-# Тестирование
-pytest==7.4.3
-pytest-asyncio==0.21.1
-pytest-cov==4.1.0
-pytest-mock==3.12.0
-
-# Безопасность
+# === БЕЗОПАСНОСТЬ ===
 cryptography>=41.0.0
 
-# Мониторинг и метрики
-psutil==5.9.8
+# === АСИНХРОННОСТЬ ===
+aiohttp>=3.8.0
 
-# UUID генерация (улучшенная)
-uuid6==2023.5.2
+# === ДОПОЛНИТЕЛЬНЫЕ УТИЛИТЫ ===
+python-dateutil>=2.8.0
+click>=8.1.0
 
-# Дополнительные утилиты
-click==8.1.7
-
-# Дополнительные зависимости для критических исправлений
-aiofiles==24.1.0
-
-# Added from the code block
-requests==2.31.0
-urllib3==2.0.7
-certifi==2023.11.17
-charset-normalizer==3.3.2
-idna==3.4
+# === СИСТЕМНЫЕ ЗАВИСИМОСТИ (встроенные в Python) ===
+# sqlite3
+# json
+# datetime
+# threading
+# hashlib
+# time
+# os
+# sys
+# uuid
