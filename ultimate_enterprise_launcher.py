@@ -87,8 +87,8 @@ def validate_environment() -> bool:
         for missing in missing_critical:
             print(missing)
         print("\n💡 Пример настройки:")
-        print("  set BOT_TOKEN=your_telegram_bot_token")
-        print("  set ADMIN_USER_IDS=123456789,987654321")
+        print("  set BOT_TOKEN=7843350631:AAHQ6h_BKAH3J4sNkh9ypNt1jih4yKYM_gs")
+        print("  set ADMIN_USER_IDS=377917978")
         return False
     
     if missing_optional:
