@@ -157,13 +157,23 @@ class AdminCommands:
             daily_revenue=premium_manager.get_daily_revenue(datetime.now().strftime("%Y-%m-%d"))['total_revenue']
         )
         
-        if hasattr(message, 'message_id'):
-            # Если это callback
-            self.bot.edit_message_text(admin_msg, message.chat.id, message.message_id, 
-                                     reply_markup=markup, parse_mode='Markdown')
-        else:
-            # Если это команда
-            self.bot.send_message(message.chat.id, admin_msg, reply_markup=markup, parse_mode='Markdown')
+        # Безопасная отправка/редактирование сообщения
+        try:
+            # Попытка редактировать сообщение (если это callback или повторный вызов)
+            if hasattr(message, 'message_id') and hasattr(message, 'edit_text'):
+                # Если объект поддерживает редактирование
+                self.bot.edit_message_text(admin_msg, message.chat.id, message.message_id, 
+                                         reply_markup=markup, parse_mode='Markdown')
+            else:
+                # Если это обычная команда - отправляем новое сообщение
+                self.bot.send_message(message.chat.id, admin_msg, reply_markup=markup, parse_mode='Markdown')
+        except Exception as e:
+            # Если редактирование не удалось - отправляем новое сообщение
+            try:
+                self.bot.send_message(message.chat.id, admin_msg, reply_markup=markup, parse_mode='Markdown')
+            except Exception as send_error:
+                # Если и отправка не удалась - отправляем упрощенное сообщение
+                self.bot.send_message(message.chat.id, "❌ Ошибка загрузки админ панели. Попробуйте еще раз через /admin")
 
     def grant_premium_command(self, message):
         """Выдача бесплатного премиума"""
@@ -638,12 +648,80 @@ class AdminCommands:
             elif data == "admin_help":
                 self.show_admin_help_callback(call)
             elif data == "admin_panel":
-                self.show_admin_panel(call.message)
+                self.show_admin_panel_callback(call)
             else:
-                self.bot.edit_message_text("⚙️ Функция в разработке", 
-                                         call.message.chat.id, call.message.message_id)
+                try:
+                    self.bot.edit_message_text("⚙️ Функция в разработке", 
+                                             call.message.chat.id, call.message.message_id)
+                except:
+                    self.bot.send_message(call.message.chat.id, "⚙️ Функция в разработке")
         except Exception as e:
             print(f"Admin callback error: {e}")
+            try:
+                self.bot.answer_callback_query(call.id, "❌ Ошибка обработки")
+            except:
+                pass
+    
+    def show_admin_panel_callback(self, call):
+        """Показать админ панель через callback"""
+        markup = types.InlineKeyboardMarkup(row_width=2)
+        
+        # Управление пользователями
+        markup.add(
+            types.InlineKeyboardButton("👥 Пользователи", callback_data="admin_users"),
+            types.InlineKeyboardButton("💰 Доходы", callback_data="admin_revenue")
+        )
+        
+        # Выдача премиума
+        markup.add(
+            types.InlineKeyboardButton("🎁 Выдать Premium", callback_data="admin_grant"),
+            types.InlineKeyboardButton("🧪 Тест-режим", callback_data="admin_test")
+        )
+        
+        # Система
+        markup.add(
+            types.InlineKeyboardButton("📊 Статистика", callback_data="admin_stats"),
+            types.InlineKeyboardButton("🔧 Диагностика", callback_data="admin_health")
+        )
+        
+        # TON платежи
+        markup.add(
+            types.InlineKeyboardButton("💎 Подтвердить TON", callback_data="admin_ton"),
+            types.InlineKeyboardButton("📋 Справка", callback_data="admin_help")
+        )
+        
+        admin_msg = """
+🔥 **ПАНЕЛЬ АДМИНИСТРАТОРА** 🔥
+
+👤 **Администратор:** {username}
+🕐 **Время:** {time}
+📊 **Пользователей:** {total_users}
+💰 **Доход сегодня:** ${daily_revenue:.2f}
+
+⚙️ **ДОСТУПНЫЕ ФУНКЦИИ:**
+• Управление пользователями
+• Мониторинг доходов  
+• Выдача бесплатного премиума
+• Подтверждение TON платежей
+• Системная диагностика
+
+🎯 **Выберите действие:**
+        """.format(
+            username=call.from_user.username or call.from_user.first_name,
+            time=datetime.now().strftime("%H:%M:%S"),
+            total_users=len(premium_manager.users),
+            daily_revenue=premium_manager.get_daily_revenue(datetime.now().strftime("%Y-%m-%d"))['total_revenue']
+        )
+        
+        try:
+            self.bot.edit_message_text(admin_msg, call.message.chat.id, call.message.message_id, 
+                                     reply_markup=markup, parse_mode='Markdown')
+        except Exception as e:
+            # Если редактирование не удалось - отправляем новое сообщение
+            try:
+                self.bot.send_message(call.message.chat.id, admin_msg, reply_markup=markup, parse_mode='Markdown')
+            except Exception as send_error:
+                self.bot.send_message(call.message.chat.id, "❌ Ошибка загрузки админ панели")
 
     def show_users_callback(self, call):
         """👥 Показать пользователей через callback"""
@@ -673,8 +751,15 @@ class AdminCommands:
         )
         markup.add(types.InlineKeyboardButton("🔙 Админ панель", callback_data="admin_panel"))
         
-        self.bot.edit_message_text(users_msg, call.message.chat.id, call.message.message_id,
-                                 reply_markup=markup, parse_mode='Markdown')
+        try:
+            self.bot.edit_message_text(users_msg, call.message.chat.id, call.message.message_id,
+                                     reply_markup=markup, parse_mode='Markdown')
+        except Exception as e:
+            # Если редактирование не удалось - отправляем новое сообщение
+            try:
+                self.bot.send_message(call.message.chat.id, users_msg, reply_markup=markup, parse_mode='Markdown')
+            except Exception as send_error:
+                self.bot.send_message(call.message.chat.id, "❌ Ошибка загрузки списка пользователей")
 
     def show_revenue_callback(self, call):
         """💰 Показать доходы через callback"""
@@ -717,8 +802,15 @@ class AdminCommands:
         )
         markup.add(types.InlineKeyboardButton("🔙 Админ панель", callback_data="admin_panel"))
         
-        self.bot.edit_message_text(revenue_msg, call.message.chat.id, call.message.message_id,
-                                 reply_markup=markup, parse_mode='Markdown')
+        try:
+            self.bot.edit_message_text(revenue_msg, call.message.chat.id, call.message.message_id,
+                                     reply_markup=markup, parse_mode='Markdown')
+        except Exception as e:
+            # Если редактирование не удалось - отправляем новое сообщение
+            try:
+                self.bot.send_message(call.message.chat.id, revenue_msg, reply_markup=markup, parse_mode='Markdown')
+            except Exception as send_error:
+                self.bot.send_message(call.message.chat.id, "❌ Ошибка загрузки данных о доходах")
 
     def show_grant_menu(self, call):
         """🎁 Меню выдачи премиума"""
@@ -751,8 +843,15 @@ class AdminCommands:
         )
         markup.add(types.InlineKeyboardButton("🔙 Админ панель", callback_data="admin_panel"))
         
-        self.bot.edit_message_text(grant_msg, call.message.chat.id, call.message.message_id,
-                                 reply_markup=markup, parse_mode='Markdown')
+        try:
+            self.bot.edit_message_text(grant_msg, call.message.chat.id, call.message.message_id,
+                                     reply_markup=markup, parse_mode='Markdown')
+        except Exception as e:
+            # Если редактирование не удалось - отправляем новое сообщение
+            try:
+                self.bot.send_message(call.message.chat.id, grant_msg, reply_markup=markup, parse_mode='Markdown')
+            except Exception as send_error:
+                self.bot.send_message(call.message.chat.id, "❌ Ошибка загрузки меню выдачи премиума")
 
     def show_test_mode_menu(self, call):
         """🧪 Меню тест-режима"""
@@ -793,8 +892,15 @@ class AdminCommands:
         )
         markup.add(types.InlineKeyboardButton("🔙 Админ панель", callback_data="admin_panel"))
         
-        self.bot.edit_message_text(test_msg, call.message.chat.id, call.message.message_id,
-                                 reply_markup=markup, parse_mode='Markdown')
+        try:
+            self.bot.edit_message_text(test_msg, call.message.chat.id, call.message.message_id,
+                                     reply_markup=markup, parse_mode='Markdown')
+        except Exception as e:
+            # Если редактирование не удалось - отправляем новое сообщение
+            try:
+                self.bot.send_message(call.message.chat.id, test_msg, reply_markup=markup, parse_mode='Markdown')
+            except Exception as send_error:
+                self.bot.send_message(call.message.chat.id, "❌ Ошибка загрузки тест-режима")
 
     def show_ton_confirmation_menu(self, call):
         """💎 Меню подтверждения TON платежей"""
@@ -817,19 +923,31 @@ class AdminCommands:
 • VIP: 2.0 TON (день)
 • Ultimate: 4.0 TON (день)
 
-📊 **Недавние TON платежи:**
-Пока нет платежей...
+🎯 **Месячные тарифы:**
+• Premium: 28 TON (месяц)
+• VIP: 48 TON (месяц)
+• Ultimate: 88 TON (месяц)
+
+⚠️ **Важно:**
+После получения TON на кошелек используйте команду для активации подписки.
         """
         
         markup = types.InlineKeyboardMarkup()
         markup.add(
-            types.InlineKeyboardButton("💰 Доходы", callback_data="admin_revenue"),
-            types.InlineKeyboardButton("👥 Пользователи", callback_data="admin_users")
+            types.InlineKeyboardButton("👥 Пользователи", callback_data="admin_users"),
+            types.InlineKeyboardButton("💰 Доходы", callback_data="admin_revenue")
         )
         markup.add(types.InlineKeyboardButton("🔙 Админ панель", callback_data="admin_panel"))
         
-        self.bot.edit_message_text(ton_msg, call.message.chat.id, call.message.message_id,
-                                 reply_markup=markup, parse_mode='Markdown')
+        try:
+            self.bot.edit_message_text(ton_msg, call.message.chat.id, call.message.message_id,
+                                     reply_markup=markup, parse_mode='Markdown')
+        except Exception as e:
+            # Если редактирование не удалось - отправляем новое сообщение
+            try:
+                self.bot.send_message(call.message.chat.id, ton_msg, reply_markup=markup, parse_mode='Markdown')
+            except Exception as send_error:
+                self.bot.send_message(call.message.chat.id, "❌ Ошибка загрузки меню TON платежей")
 
     def show_stats_callback(self, call):
         """📊 Детальная статистика через callback"""
@@ -871,8 +989,15 @@ class AdminCommands:
             types.InlineKeyboardButton("🔙 Админ панель", callback_data="admin_panel")
         )
         
-        self.bot.edit_message_text(stats_msg, call.message.chat.id, call.message.message_id,
-                                 reply_markup=markup, parse_mode='Markdown')
+        try:
+            self.bot.edit_message_text(stats_msg, call.message.chat.id, call.message.message_id,
+                                     reply_markup=markup, parse_mode='Markdown')
+        except Exception as e:
+            # Если редактирование не удалось - отправляем новое сообщение
+            try:
+                self.bot.send_message(call.message.chat.id, stats_msg, reply_markup=markup, parse_mode='Markdown')
+            except Exception as send_error:
+                self.bot.send_message(call.message.chat.id, "❌ Ошибка загрузки статистики")
 
     def health_check_callback(self, call):
         """🔧 Диагностика системы через callback"""
@@ -917,8 +1042,15 @@ class AdminCommands:
         )
         markup.add(types.InlineKeyboardButton("🔙 Админ панель", callback_data="admin_panel"))
         
-        self.bot.edit_message_text(health_msg, call.message.chat.id, call.message.message_id,
-                                 reply_markup=markup, parse_mode='Markdown')
+        try:
+            self.bot.edit_message_text(health_msg, call.message.chat.id, call.message.message_id,
+                                     reply_markup=markup, parse_mode='Markdown')
+        except Exception as e:
+            # Если редактирование не удалось - отправляем новое сообщение
+            try:
+                self.bot.send_message(call.message.chat.id, health_msg, reply_markup=markup, parse_mode='Markdown')
+            except Exception as send_error:
+                self.bot.send_message(call.message.chat.id, "❌ Ошибка загрузки диагностики")
 
     def show_admin_help_callback(self, call):
         """📋 Помощь по админ командам через callback"""
@@ -957,8 +1089,15 @@ class AdminCommands:
         )
         markup.add(types.InlineKeyboardButton("🔙 Админ панель", callback_data="admin_panel"))
         
-        self.bot.edit_message_text(help_msg, call.message.chat.id, call.message.message_id,
-                                 reply_markup=markup, parse_mode='Markdown')
+        try:
+            self.bot.edit_message_text(help_msg, call.message.chat.id, call.message.message_id,
+                                     reply_markup=markup, parse_mode='Markdown')
+        except Exception as e:
+            # Если редактирование не удалось - отправляем новое сообщение
+            try:
+                self.bot.send_message(call.message.chat.id, help_msg, reply_markup=markup, parse_mode='Markdown')
+            except Exception as send_error:
+                self.bot.send_message(call.message.chat.id, "❌ Ошибка загрузки справки")
 
     # === ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ ===
     

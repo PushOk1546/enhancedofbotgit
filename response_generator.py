@@ -17,16 +17,9 @@ from datetime import datetime, timedelta
 
 from adult_templates import (
     AdultTemplateRepository, 
-    FallbackSystem,
     ExplicitnessLevel, 
     ContentMode, 
-    TemplateCategory,
-    ContentTemplate,
-    TemplateStrategy,
-    QualityBasedStrategy,
-    ContextAwareStrategy,
-    adult_templates_repo,
-    fallback_system
+    TemplateCategory
 )
 
 logger = logging.getLogger(__name__)
@@ -256,37 +249,33 @@ class ResponseMetrics:
         return max(0.1, min(2.0, base_score))
 
 class ResponseGenerator:
-    """Main response generator with hybrid template/AI approach"""
+    """Professional response generator with template/AI hybrid approach"""
     
     def __init__(
         self, 
         template_repo: AdultTemplateRepository = None,
         template_ratio: float = 0.8
     ):
-        self.template_repo = template_repo or adult_templates_repo
-        self.fallback_system = fallback_system
-        self.cache = InMemoryCache(max_size=2000)
-        self.template_ratio = template_ratio  # 80% templates, 20% AI
+        self.template_repo = template_repo or AdultTemplateRepository()
+        self.template_ratio = template_ratio
         
         # User preferences storage
         self.user_preferences: Dict[int, UserPreferences] = {}
         
-        # A/B testing groups
-        self.ab_test_groups = {
-            'template_heavy': {'template_ratio': 0.9, 'strategy': 'quality_based'},
-            'ai_heavy': {'template_ratio': 0.6, 'strategy': 'context_aware'},
-            'balanced': {'template_ratio': 0.8, 'strategy': 'context_aware'},
-            'default': {'template_ratio': 0.8, 'strategy': 'quality_based'}
-        }
-        
-        # Metrics tracking
+        # Performance tracking
         self.metrics: List[ResponseMetrics] = []
         
-        # Template strategies
-        self.strategies = {
-            'quality_based': QualityBasedStrategy(),
-            'context_aware': ContextAwareStrategy()
+        # Caching system
+        self.cache = InMemoryCache()
+        
+        # A/B testing groups
+        self.ab_test_groups = {
+            'default': {'template_ratio': 0.8, 'description': 'Default behavior'},
+            'template_heavy': {'template_ratio': 0.9, 'description': 'More templates'},
+            'ai_heavy': {'template_ratio': 0.5, 'description': 'More AI responses'}
         }
+        
+        logger.info("✅ ResponseGenerator initialized successfully")
     
     def get_user_preferences(self, user_id: int) -> UserPreferences:
         """Get or create user preferences"""
@@ -319,7 +308,7 @@ class ResponseGenerator:
         user_message: str, 
         context: Dict[str, Any]
     ) -> str:
-        """Generate response using hybrid approach"""
+        """Generate response using hybrid template/AI approach"""
         
         # Check cache first
         cached_response = await self.cache.get(context)
@@ -360,10 +349,11 @@ class ResponseGenerator:
                     response = await self._generate_template_response(user_message, context)
                     method = GenerationMethod.TEMPLATE
             
-            # Final fallback
+            # Final fallback to simple template
             if not response:
-                response = await self.fallback_system.get_fallback_response(
-                    prefs.explicitness_level, context
+                response = self.template_repo.get_random_template(
+                    mode=prefs.content_mode.value, 
+                    level=prefs.explicitness_level.value
                 )
                 method = GenerationMethod.TEMPLATE
             
@@ -392,9 +382,8 @@ class ResponseGenerator:
             
         except Exception as e:
             logger.error(f"Error generating response: {str(e)}", exc_info=True)
-            return await self.fallback_system.get_fallback_response(
-                prefs.explicitness_level, context
-            )
+            # Simple fallback
+            return "Привет, красавчик! 😘 Как дела?"
     
     async def _generate_template_response(
         self, 
@@ -416,33 +405,26 @@ class ResponseGenerator:
         # Determine category based on message content
         category = self._classify_message_category(user_message)
         
-        # Get relevant templates
-        templates = self.template_repo.get_templates(
-            category=category,
-            explicitness=explicitness,
-            mode=mode
-        )
-        
-        if not templates:
-            # Fallback to any templates with same explicitness/mode
-            templates = self.template_repo.get_templates(
-                explicitness=explicitness,
-                mode=mode
+        # Try to get template by category first
+        try:
+            response = self.template_repo.get_template_by_category_and_level(
+                category.value, explicitness.value
             )
+            if response:
+                return self._process_template_variables(response, context)
+        except:
+            pass
         
-        if not templates:
-            return None
-        
-        # Use strategy to select template
-        strategy_name = self.ab_test_groups[prefs.ab_test_group]['strategy']
-        strategy = self.strategies[strategy_name]
-        
-        template = await strategy.select_template(templates, context)
-        
-        if template:
-            # Process variables in template
-            response = self._process_template_variables(template.text, context)
-            return response
+        # Fallback to random template
+        try:
+            response = self.template_repo.get_random_template(
+                mode=mode.value, 
+                level=explicitness.value
+            )
+            if response:
+                return self._process_template_variables(response, context)
+        except:
+            pass
         
         return None
     
@@ -451,10 +433,8 @@ class ResponseGenerator:
         user_message: str, 
         context: Dict[str, Any]
     ) -> Optional[str]:
-        """Generate response using AI (placeholder - integrate with existing API)"""
+        """Generate response using AI (integrate with existing API)"""
         
-        # This would integrate with your existing generate_groq_response function
-        # For now, return None to force template fallback
         try:
             # Import here to avoid circular imports
             from api import generate_groq_response
@@ -462,11 +442,19 @@ class ResponseGenerator:
             # Create AI prompt based on context
             prompt = self._create_ai_prompt(user_message, context)
             
-            # Call existing AI generation (this would need to be adapted)
-            response = await generate_groq_response(prompt, context.get('model_id', 'eco'))
+            # Call existing AI generation with proper parameters
+            response = await generate_groq_response(
+                prompt=prompt, 
+                model='eco',  # Default model
+                max_tokens=120,
+                temperature=0.8
+            )
             
             return response
             
+        except ImportError as e:
+            logger.error(f"API module import failed: {str(e)}")
+            return None
         except Exception as e:
             logger.error(f"AI generation failed: {str(e)}")
             return None

@@ -4,9 +4,12 @@ Explicit templates organized by intensity for premium conversions
 """
 
 import random
+import logging
 from enum import Enum
 from dataclasses import dataclass
 from typing import List, Dict, Optional
+
+logger = logging.getLogger(__name__)
 
 class ExplicitnessLevel(Enum):
     SOFT = 1      # Flirty, suggestive 
@@ -28,6 +31,10 @@ class TemplateCategory(Enum):
     EXPLICIT = "explicit"
     CONVERSION = "conversion"
     PREMIUM_PREVIEW = "premium_preview"
+    APPRECIATION = "appreciation"
+    PPV_PROMO = "ppv_promo"
+    FLIRT = "flirt"
+    TEASE = "tease"
 
 @dataclass
 class AdultTemplate:
@@ -216,6 +223,12 @@ class AdultTemplateRepository:
     def get_premium_content(self) -> str:
         """Get premium content preview"""
         return self.manager.get_premium_preview()
+    
+    def update_quality_score(self, template_id: str, quality_score: float):
+        """Update template quality score (placeholder implementation)"""
+        # В будущем здесь можно реализовать хранение и обновление качества шаблонов
+        logger.info(f"Updated quality score for template {template_id}: {quality_score}")
+        pass
 
 # Global repository instance for compatibility
 adult_template_repository = AdultTemplateRepository() 

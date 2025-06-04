@@ -11,10 +11,17 @@ import asyncio
 import logging
 import time
 import random
+import os
 from enum import Enum
 from typing import Optional, Dict, Any
 from groq import AsyncGroq
-from config import GROQ_KEY
+
+# Исправляем импорт GROQ_KEY
+try:
+    from config.config import GROQ_KEY
+except ImportError:
+    # Fallback на прямое получение из env
+    GROQ_KEY = os.getenv('GROQ_KEY')
 
 logger = logging.getLogger("bot_logger")
 

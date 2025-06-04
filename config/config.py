@@ -136,9 +136,9 @@ PPV_STYLES = {
     'элегантный': 'Элегантный и изысканный контент'
 }
 
-# Настройки безопасности  
+#  
 SECURITY_SETTINGS = {
     'max_retries': 3,
     'timeout': 30,
     'max_message_size': 4096
-} 
+}
