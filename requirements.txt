@@ -20,6 +20,11 @@ cachetools==5.3.2
 # Валидация
 pydantic==2.6.1
 
+# Новые зависимости для DeepSeek-R1
+python-json-logger
+apscheduler
+deepseek-sdk
+
 # Опциональные для разработки (раскомментируйте при необходимости)
 # pytest==8.1.1
 # pytest-asyncio==0.21.1

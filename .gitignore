@@ -1,2 +1,103 @@
 # .gitignore очищен по запросу пользователя
 # Все файлы теперь будут отслеживаться Git'ом 
+
+# OF Assistant Bot - GitIgnore
+
+# Environment files (CRITICAL!)
+.env
+.env.local
+.env.production
+.env.test
+*.env
+
+# API Keys and secrets
+api_keys.txt
+secrets.txt
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache
+.cache/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Bot specific data
+data/users/
+data/stats/
+data/backups/
+temp/
+uploads/
+
+# Test outputs
+test_outputs/
+test_logs/ 

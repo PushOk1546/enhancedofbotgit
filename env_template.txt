@@ -3,10 +3,10 @@
 
 # === ОБЯЗАТЕЛЬНЫЕ НАСТРОЙКИ ===
 # Telegram Bot Token (получить у @BotFather)
-TELEGRAM_BOT_TOKEN=7843350631:AAHQ6h_BKAH3J4sNkh9ypNt1jih4yKYM_gs
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
 
 # DeepSeek-R1 API Key (получить на https://platform.deepseek.com)
-DEEPSEEK_API_KEY=sk-7e8b498423c04d538c0b1db13017b8eb
+DEEPSEEK_API_KEY=your_deepseek_api_key_here
 
 # === ДОПОЛНИТЕЛЬНЫЕ НАСТРОЙКИ ===
 # Уровень логирования (DEBUG, INFO, WARNING, ERROR)

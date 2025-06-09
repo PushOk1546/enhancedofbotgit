@@ -86,3 +86,5 @@ Traceback (most recent call last):
 TypeError: duplicate base class TimeoutError
 2025-06-06 00:04:54.988 | ERROR    | enhanced_logging:_log:148 - ERROR: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: can't parse entities: Unsupported start tag "твое" at byte offset 174
 2025-06-06 00:04:54.988 | ERROR    | enhanced_logging:_log:148 - Ошибка ответа пользователю 377917978: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: can't parse entities: Unsupported start tag "твое" at byte offset 174
+2025-06-09 20:55:49.937 | ERROR    | enhanced_logging:_log:148 - ❌ DEEPSEEK_API_KEY не найден в конфигурации!
+2025-06-09 20:55:55.642 | ERROR    | enhanced_logging:_log:148 - ❌ DEEPSEEK_API_KEY не найден в конфигурации!

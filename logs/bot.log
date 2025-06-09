@@ -214,3 +214,18 @@ TypeError: duplicate base class TimeoutError
 2025-06-06 00:04:54.812 | INFO     | enhanced_logging:_log:148 - 👤 Пользователь 377917978 | Действие: start_command | Детали: {'username': 'tylerthecrea', 'first_name': 'Арабский', 'chat_id': 377917978, 'chat_type': 'private'}
 2025-06-06 00:04:54.988 | ERROR    | enhanced_logging:_log:148 - ERROR: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: can't parse entities: Unsupported start tag "твое" at byte offset 174
 2025-06-06 00:04:54.988 | ERROR    | enhanced_logging:_log:148 - Ошибка ответа пользователю 377917978: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: can't parse entities: Unsupported start tag "твое" at byte offset 174
+2025-06-09 20:55:49.932 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-09 20:55:49.933 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-09 20:55:49.933 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-09 20:55:55.637 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-09 20:55:55.637 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-09 20:55:55.638 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-09 21:21:07.822 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-09 21:21:07.823 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-09 21:21:07.823 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-09 21:21:22.095 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-09 21:21:22.095 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-09 21:21:22.095 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-09 21:21:59.310 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-09 21:21:59.311 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-09 21:21:59.311 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
