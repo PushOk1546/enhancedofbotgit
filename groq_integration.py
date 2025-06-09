@@ -7,9 +7,23 @@ import os
 import asyncio
 from typing import List, Optional, Dict, Any
 import logging
-from groq import AsyncGroq
-from cachetools import TTLCache
-import ujson as json
+try:
+    from groq import AsyncGroq
+    GROQ_AVAILABLE = True
+except ImportError:
+    GROQ_AVAILABLE = False
+
+# Fallback для cachetools если не установлен
+try:
+    from cachetools import TTLCache
+except ImportError:
+    class TTLCache(dict):
+        def __init__(self, maxsize=100, ttl=3600):
+            super().__init__()
+            self.maxsize = maxsize
+            self.ttl = ttl
+
+import json
 
 # Импорт кастомных исключений
 from app.core.error_handler import (

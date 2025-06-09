@@ -8,8 +8,18 @@ from typing import List, Dict, Optional, Any, Union
 from datetime import datetime
 from enum import Enum
 import logging
-from cachetools import TTLCache
-import ujson as json
+import json
+
+# Fallback для cachetools если не установлен
+try:
+    from cachetools import TTLCache
+except ImportError:
+    # Простая реализация TTLCache для fallback
+    class TTLCache(dict):
+        def __init__(self, maxsize=100, ttl=3600):
+            super().__init__()
+            self.maxsize = maxsize
+            self.ttl = ttl
 
 
 # === БАЗОВЫЕ МОДЕЛИ ДЛЯ MVP ===
