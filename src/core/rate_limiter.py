@@ -1,332 +1,282 @@
 """
-Система ограничения частоты запросов (Rate Limiting).
-Защищает от злоупотреблений и DoS атак.
+Rate Limiter Module for Enhanced OF Bot
+Implements rate limiting with Redis-like in-memory storage.
 """
 
 import time
 import asyncio
-from typing import Dict, Optional, Tuple, Callable
-from collections import defaultdict, deque
-from dataclasses import dataclass
-from threading import Lock
 import logging
-import functools
+from typing import Dict, Optional, Tuple, Any
+from dataclasses import dataclass, field
+from abc import ABC, abstractmethod
 
-from .exceptions import RateLimitError
+logger = logging.getLogger(__name__)
 
 
 @dataclass
-class RateLimit:
-    """Конфигурация ограничения частоты"""
-    requests: int  # Количество запросов
-    window: int    # Временное окно в секундах
-    burst: Optional[int] = None  # Burst лимит
+class RateLimitConfig:
+    """Configuration for rate limiting rules."""
+    
+    requests_per_minute: int = 60
+    requests_per_hour: int = 1000
+    burst_limit: int = 10
+    cooldown_seconds: int = 300  # 5 minutes penalty
+    
+
+@dataclass
+class UserLimitStatus:
+    """Tracks rate limit status for a user."""
+    
+    user_id: int
+    minute_requests: int = 0
+    hour_requests: int = 0
+    burst_count: int = 0
+    last_request_time: float = field(default_factory=time.time)
+    minute_reset_time: float = field(default_factory=time.time)
+    hour_reset_time: float = field(default_factory=time.time)
+    penalty_until: Optional[float] = None
+    
+
+class RateLimitRepository(ABC):
+    """Abstract repository for rate limit data storage."""
+    
+    @abstractmethod
+    async def get_user_status(self, user_id: int) -> Optional[UserLimitStatus]:
+        """Get user rate limit status."""
+        pass
+    
+    @abstractmethod
+    async def save_user_status(self, status: UserLimitStatus) -> None:
+        """Save user rate limit status."""
+        pass
+    
+    @abstractmethod
+    async def cleanup_expired(self) -> None:
+        """Clean up expired rate limit data."""
+        pass
 
 
-class TokenBucket:
-    """Реализация алгоритма Token Bucket для rate limiting"""
+class InMemoryRateLimitRepository(RateLimitRepository):
+    """In-memory implementation of rate limit repository."""
     
-    def __init__(self, capacity: int, refill_rate: float):
-        """
-        Args:
-            capacity: Размер ведра (максимальное количество токенов)
-            refill_rate: Скорость пополнения токенов в секунду
-        """
-        self.capacity = capacity
-        self.refill_rate = refill_rate
-        self.tokens = capacity
-        self.last_refill = time.time()
-        self.lock = Lock()
+    def __init__(self, cleanup_interval: int = 3600) -> None:
+        """Initialize repository with cleanup interval."""
+        self.storage: Dict[int, UserLimitStatus] = {}
+        self.cleanup_interval = cleanup_interval
+        self._last_cleanup = time.time()
     
-    def consume(self, tokens: int = 1) -> bool:
-        """
-        Попытка получить токены из ведра.
+    async def get_user_status(self, user_id: int) -> Optional[UserLimitStatus]:
+        """Get user rate limit status from memory."""
+        await self._cleanup_if_needed()
+        return self.storage.get(user_id)
+    
+    async def save_user_status(self, status: UserLimitStatus) -> None:
+        """Save user rate limit status to memory."""
+        self.storage[status.user_id] = status
+    
+    async def cleanup_expired(self) -> None:
+        """Remove expired entries from memory."""
+        current_time = time.time()
+        expired_users = []
         
-        Args:
-            tokens: Количество токенов для получения
-            
-        Returns:
-            True если токены получены, False если недостаточно токенов
-        """
-        with self.lock:
-            now = time.time()
-            # Пополняем токены
-            time_passed = now - self.last_refill
-            self.tokens = min(
-                self.capacity,
-                self.tokens + time_passed * self.refill_rate
-            )
-            self.last_refill = now
-            
-            # Проверяем доступность токенов
-            if self.tokens >= tokens:
-                self.tokens -= tokens
-                return True
-            return False
-
-
-class SlidingWindowCounter:
-    """Реализация алгоритма Sliding Window Counter"""
+        for user_id, status in self.storage.items():
+            # Remove if no activity for 24 hours
+            if current_time - status.last_request_time > 86400:
+                expired_users.append(user_id)
+        
+        for user_id in expired_users:
+            del self.storage[user_id]
+        
+        self._last_cleanup = current_time
+        logger.info(f"Cleaned up {len(expired_users)} expired rate limit entries")
     
-    def __init__(self, limit: int, window: int):
-        """
-        Args:
-            limit: Максимальное количество запросов
-            window: Размер окна в секундах
-        """
-        self.limit = limit
-        self.window = window
-        self.requests = deque()
-        self.lock = Lock()
-    
-    def can_proceed(self) -> bool:
-        """Проверка возможности выполнения запроса"""
-        with self.lock:
-            now = time.time()
-            # Удаляем старые запросы
-            while self.requests and self.requests[0] <= now - self.window:
-                self.requests.popleft()
-            
-            # Проверяем лимит
-            if len(self.requests) < self.limit:
-                self.requests.append(now)
-                return True
-            return False
+    async def _cleanup_if_needed(self) -> None:
+        """Run cleanup if interval has passed."""
+        if time.time() - self._last_cleanup > self.cleanup_interval:
+            await self.cleanup_expired()
 
 
 class RateLimiter:
-    """Основной класс для ограничения частоты запросов"""
+    """Advanced rate limiter with multiple limits and burst protection."""
     
-    def __init__(self):
-        self.logger = logging.getLogger(__name__)
+    def __init__(
+        self,
+        repository: RateLimitRepository,
+        config: RateLimitConfig = None
+    ) -> None:
+        """Initialize rate limiter with dependency injection."""
+        self.repository = repository
+        self.config = config or RateLimitConfig()
         
-        # Конфигурации лимитов для разных типов операций
-        self.limits = {
-            'message': RateLimit(requests=30, window=60),      # 30 сообщений в минуту
-            'api_call': RateLimit(requests=10, window=60),     # 10 API вызовов в минуту
-            'callback': RateLimit(requests=50, window=60),     # 50 callback в минуту
-            'command': RateLimit(requests=20, window=60),      # 20 команд в минуту
-            'global': RateLimit(requests=100, window=60)       # 100 любых действий в минуту
-        }
-        
-        # Хранилища для разных алгоритмов
-        self.sliding_windows: Dict[str, SlidingWindowCounter] = {}
-        self.token_buckets: Dict[str, TokenBucket] = {}
-        
-        # Блокировки пользователей
-        self.blocked_users: Dict[int, float] = {}  # user_id -> timestamp до которого заблокирован
-        
-        self.lock = Lock()
-    
-    def _get_key(self, user_id: int, operation_type: str) -> str:
-        """Генерация ключа для хранения состояния лимитера"""
-        return f"{user_id}:{operation_type}"
-    
-    def _is_user_blocked(self, user_id: int) -> bool:
-        """Проверка блокировки пользователя"""
-        with self.lock:
-            if user_id in self.blocked_users:
-                if time.time() < self.blocked_users[user_id]:
-                    return True
-                else:
-                    # Снимаем блокировку
-                    del self.blocked_users[user_id]
-            return False
-    
-    def _block_user(self, user_id: int, duration: int = 300):
-        """Блокировка пользователя на определенное время"""
-        with self.lock:
-            self.blocked_users[user_id] = time.time() + duration
-            self.logger.warning(f"User {user_id} blocked for {duration} seconds due to rate limit violation")
-    
-    def check_rate_limit(self, user_id: int, operation_type: str) -> bool:
+    async def is_allowed(self, user_id: int) -> Tuple[bool, Dict[str, Any]]:
         """
-        Проверка ограничения частоты для пользователя и типа операции.
+        Check if user request is allowed.
         
-        Args:
-            user_id: ID пользователя
-            operation_type: Тип операции
-            
         Returns:
-            True если запрос разрешен, False если превышен лимит
-            
-        Raises:
-            RateLimitError: При превышении лимита
+            Tuple of (is_allowed, info_dict)
         """
-        # Проверяем блокировку
-        if self._is_user_blocked(user_id):
-            raise RateLimitError(user_id, 0, 0)
+        current_time = time.time()
+        status = await self._get_or_create_status(user_id)
         
-        # Проверяем существование лимита для типа операции
-        if operation_type not in self.limits:
-            self.logger.warning(f"Unknown operation type: {operation_type}")
-            operation_type = 'global'
+        # Check penalty period
+        if status.penalty_until and current_time < status.penalty_until:
+            return False, {
+                'reason': 'penalty',
+                'retry_after': status.penalty_until - current_time,
+                'message': 'Rate limit exceeded. Try again later.'
+            }
         
-        limit_config = self.limits[operation_type]
-        key = self._get_key(user_id, operation_type)
+        # Reset counters if time windows have passed
+        self._reset_counters_if_needed(status, current_time)
         
-        # Создаем или получаем sliding window counter
-        if key not in self.sliding_windows:
-            with self.lock:
-                if key not in self.sliding_windows:
-                    self.sliding_windows[key] = SlidingWindowCounter(
-                        limit_config.requests,
-                        limit_config.window
-                    )
-        
-        # Проверяем лимит
-        if not self.sliding_windows[key].can_proceed():
-            # Проверяем глобальный лимит
-            global_key = self._get_key(user_id, 'global')
-            if global_key not in self.sliding_windows:
-                with self.lock:
-                    if global_key not in self.sliding_windows:
-                        self.sliding_windows[global_key] = SlidingWindowCounter(
-                            self.limits['global'].requests,
-                            self.limits['global'].window
-                        )
+        # Check limits
+        if not self._check_limits(status):
+            # Apply penalty for exceeding limits
+            status.penalty_until = current_time + self.config.cooldown_seconds
+            await self.repository.save_user_status(status)
             
-            if not self.sliding_windows[global_key].can_proceed():
-                # Блокируем пользователя при превышении глобального лимита
-                self._block_user(user_id)
-            
-            raise RateLimitError(
-                user_id,
-                limit_config.requests,
-                limit_config.window
+            return False, {
+                'reason': 'rate_limit',
+                'retry_after': self.config.cooldown_seconds,
+                'message': 'Too many requests. Cooling down.'
+            }
+        
+        # Update counters
+        await self._update_counters(status, current_time)
+        
+        return True, {
+            'remaining_minute': (
+                self.config.requests_per_minute - status.minute_requests
+            ),
+            'remaining_hour': (
+                self.config.requests_per_hour - status.hour_requests
             )
-        
-        return True
-    
-    def get_rate_limit_info(self, user_id: int, operation_type: str) -> Dict[str, int]:
-        """
-        Получение информации о текущем состоянии лимитов.
-        
-        Args:
-            user_id: ID пользователя
-            operation_type: Тип операции
-            
-        Returns:
-            Словарь с информацией о лимитах
-        """
-        if operation_type not in self.limits:
-            operation_type = 'global'
-        
-        limit_config = self.limits[operation_type]
-        key = self._get_key(user_id, operation_type)
-        
-        if key in self.sliding_windows:
-            window = self.sliding_windows[key]
-            with window.lock:
-                now = time.time()
-                # Подсчитываем активные запросы
-                active_requests = sum(1 for req_time in window.requests 
-                                    if req_time > now - window.window)
-                remaining = max(0, limit_config.requests - active_requests)
-        else:
-            remaining = limit_config.requests
-        
-        return {
-            'limit': limit_config.requests,
-            'window': limit_config.window,
-            'remaining': remaining,
-            'blocked': self._is_user_blocked(user_id)
         }
     
-    def cleanup_old_data(self):
-        """Очистка старых данных для освобождения памяти"""
+    async def record_request(self, user_id: int) -> None:
+        """Record a successful request for the user."""
+        status = await self._get_or_create_status(user_id)
+        status.last_request_time = time.time()
+        await self.repository.save_user_status(status)
+    
+    async def get_user_stats(self, user_id: int) -> Dict[str, Any]:
+        """Get rate limit statistics for a user."""
+        status = await self._get_or_create_status(user_id)
         current_time = time.time()
         
-        with self.lock:
-            # Очищаем старые sliding windows
-            keys_to_remove = []
-            for key, window in self.sliding_windows.items():
-                with window.lock:
-                    # Если нет активных запросов в последние 10 минут
-                    if (not window.requests or 
-                        current_time - window.requests[-1] > 600):
-                        keys_to_remove.append(key)
-            
-            for key in keys_to_remove:
-                del self.sliding_windows[key]
-            
-            # Очищаем истекшие блокировки
-            expired_blocks = [user_id for user_id, until_time in self.blocked_users.items()
-                            if current_time >= until_time]
-            for user_id in expired_blocks:
-                del self.blocked_users[user_id]
+        return {
+            'user_id': user_id,
+            'minute_requests': status.minute_requests,
+            'hour_requests': status.hour_requests,
+            'burst_count': status.burst_count,
+            'penalty_active': (
+                status.penalty_until is not None and 
+                current_time < status.penalty_until
+            ),
+            'penalty_remaining': (
+                max(0, status.penalty_until - current_time) 
+                if status.penalty_until else 0
+            )
+        }
+    
+    async def _get_or_create_status(self, user_id: int) -> UserLimitStatus:
+        """Get existing status or create new one."""
+        status = await self.repository.get_user_status(user_id)
+        if status is None:
+            status = UserLimitStatus(user_id=user_id)
+        return status
+    
+    def _reset_counters_if_needed(
+        self, 
+        status: UserLimitStatus, 
+        current_time: float
+    ) -> None:
+        """Reset counters if time windows have expired."""
+        # Reset minute counter
+        if current_time - status.minute_reset_time >= 60:
+            status.minute_requests = 0
+            status.minute_reset_time = current_time
         
-        if keys_to_remove or expired_blocks:
-            self.logger.info(f"Cleaned up {len(keys_to_remove)} rate limit entries and "
-                           f"{len(expired_blocks)} expired blocks")
-
-    def rate_limit_decorator(self, operation_type: str) -> Callable:
-        """Декоратор для проверки rate limit"""
-        def decorator(func: Callable) -> Callable:
-            @functools.wraps(func)
-            async def async_wrapper(*args, **kwargs):
-                # Предполагаем, что user_id передается как аргумент
-                user_id = None
-                if args and hasattr(args[0], 'user_id'):
-                    user_id = args[0].user_id
-                elif 'user_id' in kwargs:
-                    user_id = kwargs['user_id']
-                
-                if user_id:
-                    self.check_rate_limit(user_id, operation_type)
-                
-                return await func(*args, **kwargs)
-            
-            @functools.wraps(func)
-            def sync_wrapper(*args, **kwargs):
-                # Аналогично для синхронных функций
-                user_id = None
-                if args and hasattr(args[0], 'user_id'):
-                    user_id = args[0].user_id
-                elif 'user_id' in kwargs:
-                    user_id = kwargs['user_id']
-                
-                if user_id:
-                    self.check_rate_limit(user_id, operation_type)
-                
-                return func(*args, **kwargs)
-            
-            return async_wrapper if asyncio.iscoroutinefunction(func) else sync_wrapper
-        return decorator
-
-
-# Глобальный экземпляр rate limiter
-rate_limiter = RateLimiter()
-
-
-def check_rate_limit(operation_type: str):
-    """Декоратор для проверки rate limit"""
-    def decorator(func):
-        async def async_wrapper(*args, **kwargs):
-            # Предполагаем, что user_id передается как аргумент
-            user_id = None
-            if args and hasattr(args[0], 'user_id'):
-                user_id = args[0].user_id
-            elif 'user_id' in kwargs:
-                user_id = kwargs['user_id']
-            
-            if user_id:
-                rate_limiter.check_rate_limit(user_id, operation_type)
-            
-            return await func(*args, **kwargs)
+        # Reset hour counter
+        if current_time - status.hour_reset_time >= 3600:
+            status.hour_requests = 0
+            status.hour_reset_time = current_time
         
-        def sync_wrapper(*args, **kwargs):
-            # Аналогично для синхронных функций
-            user_id = None
-            if args and hasattr(args[0], 'user_id'):
-                user_id = args[0].user_id
-            elif 'user_id' in kwargs:
-                user_id = kwargs['user_id']
-            
-            if user_id:
-                rate_limiter.check_rate_limit(user_id, operation_type)
-            
-            return func(*args, **kwargs)
+        # Reset burst counter (shorter window)
+        if current_time - status.last_request_time >= 10:
+            status.burst_count = 0
+    
+    def _check_limits(self, status: UserLimitStatus) -> bool:
+        """Check if current request would exceed any limits."""
+        return (
+            status.minute_requests < self.config.requests_per_minute and
+            status.hour_requests < self.config.requests_per_hour and
+            status.burst_count < self.config.burst_limit
+        )
+    
+    async def _update_counters(
+        self, 
+        status: UserLimitStatus, 
+        current_time: float
+    ) -> None:
+        """Update request counters."""
+        status.minute_requests += 1
+        status.hour_requests += 1
+        status.burst_count += 1
+        status.last_request_time = current_time
         
-        return async_wrapper if asyncio.iscoroutinefunction(func) else sync_wrapper
-    return decorator 
+        await self.repository.save_user_status(status)
+
+
+class RateLimitMiddleware:
+    """Middleware for applying rate limiting to bot handlers."""
+    
+    def __init__(self, rate_limiter: RateLimiter) -> None:
+        """Initialize with rate limiter dependency."""
+        self.rate_limiter = rate_limiter
+    
+    async def check_rate_limit(self, user_id: int) -> Tuple[bool, str]:
+        """
+        Check rate limit and return result.
+        
+        Returns:
+            Tuple of (is_allowed, message)
+        """
+        try:
+            is_allowed, info = await self.rate_limiter.is_allowed(user_id)
+            
+            if not is_allowed:
+                reason = info.get('reason', 'unknown')
+                retry_after = info.get('retry_after', 0)
+                
+                if reason == 'penalty':
+                    message = (
+                        f"⏰ Превышен лимит запросов. "
+                        f"Попробуйте через {int(retry_after)} секунд."
+                    )
+                else:
+                    message = "⚡ Слишком много запросов. Подождите немного."
+                
+                return False, message
+            
+            # Record successful check
+            await self.rate_limiter.record_request(user_id)
+            return True, ""
+            
+        except Exception as e:
+            logger.error(f"Rate limit check failed for user {user_id}: {e}")
+            # In case of error, allow the request but log it
+            return True, ""
+
+
+# Global instances for easy import
+default_config = RateLimitConfig(
+    requests_per_minute=30,     # Conservative for OF bot
+    requests_per_hour=500,      # Reasonable for active users
+    burst_limit=5,              # Prevent spam
+    cooldown_seconds=180        # 3 minute penalty
+)
+
+default_repository = InMemoryRateLimitRepository()
+default_rate_limiter = RateLimiter(default_repository, default_config)
+rate_limit_middleware = RateLimitMiddleware(default_rate_limiter) 
