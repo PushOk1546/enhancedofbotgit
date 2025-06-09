@@ -301,16 +301,12 @@ class BotManager:
             text += f"• Токены: {model_info.get('max_tokens', 'auto')}\n"
             text += f"• Креативность: {model_info.get('temperature', 0.8)}"
             
-            try:
-                await self.bot.edit_message_text(
-                    text, call.message.chat.id, call.message.message_id,
-                    parse_mode='HTML'
-                )
-            except Exception as e:
-                logger.warning(f"Could not edit model change message: {e}")
-                await self.bot.send_message(
-                    call.message.chat.id, text, parse_mode='HTML'
-                )
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                text,
+                parse_mode="HTML",
+            )
     
     async def _handle_flirt_style(self, call, user, style_id):
         """Обработка выбора стиля флирта"""
@@ -338,26 +334,20 @@ class BotManager:
             text = f"{style_info['emoji']} <b>Флирт ({style_name})</b>\n\n"
             text += response
             
-            try:
-                await self.bot.edit_message_text(
-                    text, call.message.chat.id, call.message.message_id,
-                    parse_mode='HTML'
-                )
-            except Exception as e:
-                logger.warning(f"Could not edit flirt message: {e}")
-                await self.bot.send_message(
-                    call.message.chat.id, text, parse_mode='HTML'
-                )
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                text,
+                parse_mode="HTML",
+            )
         except Exception as e:
             logger.error(f"Error generating flirt message: {e}")
             error_text = "❌ Ошибка при генерации сообщения. Попробуйте позже."
-            try:
-                await self.bot.edit_message_text(
-                    error_text,
-                    call.message.chat.id, call.message.message_id
-                )
-            except:
-                await self.bot.send_message(call.message.chat.id, error_text)
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                error_text,
+            )
     
     async def _handle_ppv_style(self, call, user, style_name):
         """Обработка выбора стиля PPV"""
@@ -377,26 +367,20 @@ class BotManager:
             text = f"💎 <b>PPV - {style_name.title()}</b>\n\n"
             text += response
             
-            try:
-                await self.bot.edit_message_text(
-                    text, call.message.chat.id, call.message.message_id,
-                    parse_mode='HTML'
-                )
-            except Exception as e:
-                logger.warning(f"Could not edit PPV message: {e}")
-                await self.bot.send_message(
-                    call.message.chat.id, text, parse_mode='HTML'
-                )
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                text,
+                parse_mode="HTML",
+            )
         except Exception as e:
             logger.error(f"Error generating PPV message: {e}")
             error_text = "❌ Ошибка при генерации сообщения. Попробуйте позже."
-            try:
-                await self.bot.edit_message_text(
-                    error_text,
-                    call.message.chat.id, call.message.message_id
-                )
-            except:
-                await self.bot.send_message(call.message.chat.id, error_text)
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                error_text,
+            )
     
     async def _handle_survey_step(self, call, user):
         """Обработка шагов опроса"""
@@ -448,16 +432,11 @@ class BotManager:
             text = "✅ <b>Опрос завершен!</b>\n\n"
             text += "Ваши предпочтения сохранены. Теперь бот будет учитывать их при генерации сообщений."
             
-            try:
-                await self.bot.edit_message_text(
-                    text, call.message.chat.id, call.message.message_id,
-                    parse_mode='HTML', reply_markup=None
-                )
-            except Exception as e:
-                logger.warning(f"Could not edit survey completion message: {e}")
-                await self.bot.send_message(
-                    call.message.chat.id, text, parse_mode='HTML'
-                )
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                text,
+            )
     
     async def _show_survey_step(self, call, step):
         """Показывает шаг опроса"""
@@ -477,22 +456,32 @@ class BotManager:
                 await self.bot.answer_callback_query(call.id, "Переходим к следующему шагу...")
                 return
             
-            await self.bot.edit_message_text(
-                step_data['question'], call.message.chat.id, call.message.message_id,
-                reply_markup=keyboard
+            success = await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                step_data['question'],
+                reply_markup=keyboard,
+                parse_mode=None,
             )
+            if not success:
+                try:
+                    await self.bot.delete_message(
+                        call.message.chat.id, call.message.message_id
+                    )
+                except Exception:
+                    pass
         except Exception as e:
-            # Если редактирование не удалось, отправляем новое сообщение
             logger.warning(f"Could not edit message, sending new one: {e}")
             try:
-                await self.bot.delete_message(call.message.chat.id, call.message.message_id)
-            except:
-                pass  # Игнорируем ошибки удаления
-                
+                await self.bot.delete_message(
+                    call.message.chat.id, call.message.message_id
+                )
+            except Exception:
+                pass
             await self.bot.send_message(
                 call.message.chat.id,
                 step_data['question'],
-                reply_markup=keyboard
+                reply_markup=keyboard,
             )
     
     async def _handle_text_message(self, message):
@@ -739,9 +728,41 @@ The Russian translation helps the chat moderator understand the message."""
         def signal_handler(signum, frame):
             logger.info(f"Received signal {signum}, shutting down...")
             asyncio.create_task(self.shutdown())
-        
+
         signal.signal(signal.SIGINT, signal_handler)
         signal.signal(signal.SIGTERM, signal_handler)
+
+    async def _edit_or_send(
+        self,
+        chat_id: int,
+        message_id: int,
+        text: str,
+        *,
+        reply_markup=None,
+        parse_mode: str = "HTML",
+    ) -> bool:
+        """Пытается отредактировать сообщение, при неудаче отправляет новое.
+
+        Возвращает ``True`` если редактирование прошло успешно, иначе ``False``.
+        """
+        try:
+            await self.bot.edit_message_text(
+                text,
+                chat_id,
+                message_id,
+                parse_mode=parse_mode,
+                reply_markup=reply_markup,
+            )
+            return True
+        except Exception as e:
+            logger.warning(f"Could not edit message: {e}")
+            await self.bot.send_message(
+                chat_id,
+                text,
+                parse_mode=parse_mode,
+                reply_markup=reply_markup,
+            )
+            return False
     
     async def run(self):
         """Запуск бота"""
@@ -840,17 +861,12 @@ The Russian translation helps the chat moderator understand the message."""
         try:
             text = "🏠 <b>Главное меню</b>\n\nВыберите действие:"
             
-            try:
-                await self.bot.edit_message_text(
-                    text, call.message.chat.id, call.message.message_id,
-                    parse_mode='HTML', reply_markup=get_main_keyboard()
-                )
-            except Exception as e:
-                logger.warning(f"Could not edit message for main menu: {e}")
-                await self.bot.send_message(
-                    call.message.chat.id, text,
-                    parse_mode='HTML', reply_markup=get_main_keyboard()
-                )
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                text,
+                reply_markup=get_main_keyboard(),
+            )
         except Exception as e:
             logger.error(f"Error in back_to_main handler: {str(e)}", exc_info=True)
 
@@ -865,16 +881,11 @@ The Russian translation helps the chat moderator understand the message."""
             text = "✍️ <b>Продолжение беседы</b>\n\n"
             text += "Напишите, что хотите добавить к разговору, и я создам подходящее продолжение:"
             
-            try:
-                await self.bot.edit_message_text(
-                    text, call.message.chat.id, call.message.message_id,
-                    parse_mode='HTML'
-                )
-            except Exception as e:
-                logger.warning(f"Could not edit continue writing message: {e}")
-                await self.bot.send_message(
-                    call.message.chat.id, text, parse_mode='HTML'
-                )
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                text,
+            )
         except Exception as e:
             logger.error(f"Error in continue writing handler: {str(e)}", exc_info=True)
 
@@ -884,17 +895,12 @@ The Russian translation helps the chat moderator understand the message."""
             text = "💝 <b>Добавляем флирт</b>\n\nВыберите стиль флирта:"
             keyboard = get_flirt_style_keyboard()
             
-            try:
-                await self.bot.edit_message_text(
-                    text, call.message.chat.id, call.message.message_id,
-                    parse_mode='HTML', reply_markup=keyboard
-                )
-            except Exception as e:
-                logger.warning(f"Could not edit add flirt message: {e}")
-                await self.bot.send_message(
-                    call.message.chat.id, text,
-                    parse_mode='HTML', reply_markup=keyboard
-                )
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                text,
+                reply_markup=keyboard,
+            )
         except Exception as e:
             logger.error(f"Error in add flirt handler: {str(e)}", exc_info=True)
 
@@ -904,17 +910,12 @@ The Russian translation helps the chat moderator understand the message."""
             text = "🎁 <b>Быстрый PPV</b>\n\nВыберите стиль контента:"
             keyboard = get_ppv_style_keyboard()
             
-            try:
-                await self.bot.edit_message_text(
-                    text, call.message.chat.id, call.message.message_id,
-                    parse_mode='HTML', reply_markup=keyboard
-                )
-            except Exception as e:
-                logger.warning(f"Could not edit quick PPV message: {e}")
-                await self.bot.send_message(
-                    call.message.chat.id, text,
-                    parse_mode='HTML', reply_markup=keyboard
-                )
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                text,
+                reply_markup=keyboard,
+            )
         except Exception as e:
             logger.error(f"Error in quick PPV handler: {str(e)}", exc_info=True)
 
@@ -939,27 +940,21 @@ The message should feel natural and appreciative, encouraging tips without being
             # Добавляем кнопки продолжения
             continue_keyboard = get_quick_continue_keyboard("tips")
             
-            try:
-                await self.bot.edit_message_text(
-                    response, call.message.chat.id, call.message.message_id,
-                    parse_mode='HTML', reply_markup=continue_keyboard
-                )
-            except Exception as e:
-                logger.warning(f"Could not edit quick tips message: {e}")
-                await self.bot.send_message(
-                    call.message.chat.id, response,
-                    parse_mode='HTML', reply_markup=continue_keyboard
-                )
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                response,
+                reply_markup=continue_keyboard,
+            )
                 
         except Exception as e:
             logger.error(f"Error in quick tips handler: {str(e)}", exc_info=True)
             error_text = "❌ Ошибка при генерации запроса чаевых. Попробуйте позже."
-            try:
-                await self.bot.edit_message_text(
-                    error_text, call.message.chat.id, call.message.message_id
-                )
-            except:
-                await self.bot.send_message(call.message.chat.id, error_text)
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                error_text,
+            )
 
     # Новые контекстуальные обработчики
     async def _handle_get_closer(self, call, user):
@@ -1112,17 +1107,12 @@ The message should feel natural and appreciative, encouraging tips without being
             self.state_manager.save_user(call.from_user.id, user)
             
             # Отправляем ответ
-            try:
-                await self.bot.edit_message_text(
-                    response, call.message.chat.id, call.message.message_id,
-                    parse_mode='HTML', reply_markup=keyboard
-                )
-            except Exception as e:
-                logger.warning(f"Could not edit message: {e}")
-                await self.bot.send_message(
-                    call.message.chat.id, response,
-                    parse_mode='HTML', reply_markup=keyboard
-                )
+            await self._edit_or_send(
+                call.message.chat.id,
+                call.message.message_id,
+                response,
+                reply_markup=keyboard,
+            )
         except Exception as e:
             logger.error(f"Error sending contextual response: {str(e)}")
 
