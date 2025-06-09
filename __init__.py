@@ -24,6 +24,7 @@ __description__ = "Telegram bot assistant for OnlyFans models"
 __keywords__ = ["telegram", "bot", "onlyfans", "groq", "ai", "assistant"]
 
 # Основные модули пакета
+<<<<<<< HEAD
 # from .config import (
 #     BOT_TOKEN,
 #     MODELS,
@@ -53,6 +54,15 @@ __keywords__ = ["telegram", "bot", "onlyfans", "groq", "ai", "assistant"]
 # from .api import generate_groq_response
 # from .chat_handlers import ChatHandlers
 # from .bot import BotManager
+=======
+from .config.config import BOT_TOKEN, MODELS, FLIRT_STYLES
+from .models import UserState, PPVReminder, UserPreferences
+from .state_manager import StateManager
+from .utils import setup_logging, get_main_keyboard
+from .api import generate_groq_response
+from .chat_handlers import ChatHandlers
+from .bot import BotManager
+>>>>>>> e70b13b82d79c7880bd4773edfd17a09645b5006
 
 __all__ = [
     # Оставьте только реально существующие объекты, если они есть в проекте

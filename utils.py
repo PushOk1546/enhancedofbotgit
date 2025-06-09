@@ -11,6 +11,16 @@ from typing import Any, Dict, List, Optional, Union
 import os
 import asyncio
 from pathlib import Path
+<<<<<<< HEAD
+=======
+from logging.handlers import RotatingFileHandler
+from pythonjsonlogger import jsonlogger
+from telebot import types
+from config.config import (
+    LOG_DIR, LOG_FILE, MAX_LOG_SIZE, LOG_BACKUP_COUNT,
+    MODELS, FLIRT_STYLES, RELATIONSHIP_STAGES, SURVEY_STEPS, PPV_STYLES
+)
+>>>>>>> e70b13b82d79c7880bd4773edfd17a09645b5006
 
 
 # === ФУНКЦИИ ДЛЯ РАБОТЫ С ТЕКСТОМ ===
