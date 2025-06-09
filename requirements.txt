@@ -1,35 +1,26 @@
-# Ultimate Enterprise Bot - Requirements
-# Clean dependencies without encoding conflicts
+# OF Assistant Bot - Оптимизированные зависимости
+# Совместимо с Python 3.11+
 
-# Critical dependencies
-pyTelegramBotAPI>=4.14.0
-requests>=2.28.0
-psutil>=5.9.0
-packaging>=21.0
+# Основные зависимости
+pyTelegramBotAPI==4.21.0
+# DeepSeek API использует OpenAI-совместимый интерфейс - можно использовать openai SDK
+# или просто aiohttp для прямых API вызовов
+aiofiles==23.2.1
+psutil==5.9.8
+python-dotenv==1.0.0
+loguru==0.7.2
 
-# AI and API
-groq>=0.4.0
+# Асинхронность
+aiohttp==3.9.3
 
-# Configuration
-python-dotenv>=1.0.1
+# Утилиты
+python-dateutil==2.8.2
+cachetools==5.3.2
 
-# Security
-cryptography>=41.0.0
+# Валидация
+pydantic==2.6.1
 
-# Async support
-aiohttp>=3.8.0
-
-# Additional utilities
-python-dateutil>=2.8.0
-click>=8.1.0
-
-# === СИСТЕМНЫЕ ЗАВИСИМОСТИ (встроенные в Python) ===
-# sqlite3
-# json
-# datetime
-# threading
-# hashlib
-# time
-# os
-# sys
-# uuid
+# Опциональные для разработки (раскомментируйте при необходимости)
+# pytest==8.1.1
+# pytest-asyncio==0.21.1
+# pytest-cov==4.1.0 

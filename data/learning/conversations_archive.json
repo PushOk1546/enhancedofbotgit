@@ -1,0 +1,1107 @@
+{
+  "12345_1749063529": {
+    "user_id": 12345,
+    "conversation_id": "12345_1749063529",
+    "start_time": "2025-06-04T21:58:49.104701",
+    "end_time": "2025-06-04T21:58:49.104701",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Привет, что у тебя есть?",
+        "timestamp": 1749063529.1047015
+      },
+      {
+        "role": "bot",
+        "content": "Привет! У меня много интересного контента 😘",
+        "timestamp": 1749063529.1047015
+      },
+      {
+        "role": "user",
+        "content": "Сколько стоит?",
+        "timestamp": 1749063529.1047015
+      },
+      {
+        "role": "bot",
+        "content": "Всего 10$ за премиум доступ 💎",
+        "timestamp": 1749063529.1047015
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50000_1749063529": {
+    "user_id": 50000,
+    "conversation_id": "50000_1749063529",
+    "start_time": "2025-06-04T21:58:49.115644",
+    "end_time": "2025-06-04T21:58:49.115644",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50000",
+        "timestamp": 1749063529.1156445
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50000",
+        "timestamp": 1749063529.1156445
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50001_1749063529": {
+    "user_id": 50001,
+    "conversation_id": "50001_1749063529",
+    "start_time": "2025-06-04T21:58:49.116667",
+    "end_time": "2025-06-04T21:58:49.117670",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50001",
+        "timestamp": 1749063529.1166675
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50001",
+        "timestamp": 1749063529.11767
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50002_1749063529": {
+    "user_id": 50002,
+    "conversation_id": "50002_1749063529",
+    "start_time": "2025-06-04T21:58:49.127827",
+    "end_time": "2025-06-04T21:58:49.127827",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50002",
+        "timestamp": 1749063529.1278276
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50002",
+        "timestamp": 1749063529.1278276
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50003_1749063529": {
+    "user_id": 50003,
+    "conversation_id": "50003_1749063529",
+    "start_time": "2025-06-04T21:58:49.136945",
+    "end_time": "2025-06-04T21:58:49.136945",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50003",
+        "timestamp": 1749063529.1369457
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50003",
+        "timestamp": 1749063529.1369457
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50004_1749063529": {
+    "user_id": 50004,
+    "conversation_id": "50004_1749063529",
+    "start_time": "2025-06-04T21:58:49.145767",
+    "end_time": "2025-06-04T21:58:49.145767",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50004",
+        "timestamp": 1749063529.1457672
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50004",
+        "timestamp": 1749063529.1457672
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50005_1749063529": {
+    "user_id": 50005,
+    "conversation_id": "50005_1749063529",
+    "start_time": "2025-06-04T21:58:49.155791",
+    "end_time": "2025-06-04T21:58:49.155791",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50005",
+        "timestamp": 1749063529.155791
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50005",
+        "timestamp": 1749063529.155791
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50006_1749063529": {
+    "user_id": 50006,
+    "conversation_id": "50006_1749063529",
+    "start_time": "2025-06-04T21:58:49.166090",
+    "end_time": "2025-06-04T21:58:49.166090",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50006",
+        "timestamp": 1749063529.16609
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50006",
+        "timestamp": 1749063529.16609
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50007_1749063529": {
+    "user_id": 50007,
+    "conversation_id": "50007_1749063529",
+    "start_time": "2025-06-04T21:58:49.176071",
+    "end_time": "2025-06-04T21:58:49.176071",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50007",
+        "timestamp": 1749063529.1760716
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50007",
+        "timestamp": 1749063529.1760716
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50008_1749063529": {
+    "user_id": 50008,
+    "conversation_id": "50008_1749063529",
+    "start_time": "2025-06-04T21:58:49.185634",
+    "end_time": "2025-06-04T21:58:49.185634",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50008",
+        "timestamp": 1749063529.1856344
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50008",
+        "timestamp": 1749063529.1856344
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50009_1749063529": {
+    "user_id": 50009,
+    "conversation_id": "50009_1749063529",
+    "start_time": "2025-06-04T21:58:49.196358",
+    "end_time": "2025-06-04T21:58:49.196358",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50009",
+        "timestamp": 1749063529.196359
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50009",
+        "timestamp": 1749063529.196359
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50010_1749063529": {
+    "user_id": 50010,
+    "conversation_id": "50010_1749063529",
+    "start_time": "2025-06-04T21:58:49.206995",
+    "end_time": "2025-06-04T21:58:49.206995",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50010",
+        "timestamp": 1749063529.2069955
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50010",
+        "timestamp": 1749063529.2069955
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50011_1749063529": {
+    "user_id": 50011,
+    "conversation_id": "50011_1749063529",
+    "start_time": "2025-06-04T21:58:49.216557",
+    "end_time": "2025-06-04T21:58:49.216557",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50011",
+        "timestamp": 1749063529.2165577
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50011",
+        "timestamp": 1749063529.2165577
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50012_1749063529": {
+    "user_id": 50012,
+    "conversation_id": "50012_1749063529",
+    "start_time": "2025-06-04T21:58:49.227078",
+    "end_time": "2025-06-04T21:58:49.227078",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50012",
+        "timestamp": 1749063529.227079
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50012",
+        "timestamp": 1749063529.227079
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50013_1749063529": {
+    "user_id": 50013,
+    "conversation_id": "50013_1749063529",
+    "start_time": "2025-06-04T21:58:49.237093",
+    "end_time": "2025-06-04T21:58:49.237093",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50013",
+        "timestamp": 1749063529.2370934
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50013",
+        "timestamp": 1749063529.2370934
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50014_1749063529": {
+    "user_id": 50014,
+    "conversation_id": "50014_1749063529",
+    "start_time": "2025-06-04T21:58:49.247816",
+    "end_time": "2025-06-04T21:58:49.247816",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50014",
+        "timestamp": 1749063529.247816
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50014",
+        "timestamp": 1749063529.247816
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50015_1749063529": {
+    "user_id": 50015,
+    "conversation_id": "50015_1749063529",
+    "start_time": "2025-06-04T21:58:49.257149",
+    "end_time": "2025-06-04T21:58:49.257149",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50015",
+        "timestamp": 1749063529.2571492
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50015",
+        "timestamp": 1749063529.2571492
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50016_1749063529": {
+    "user_id": 50016,
+    "conversation_id": "50016_1749063529",
+    "start_time": "2025-06-04T21:58:49.265720",
+    "end_time": "2025-06-04T21:58:49.265720",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50016",
+        "timestamp": 1749063529.2657206
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50016",
+        "timestamp": 1749063529.2657206
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50017_1749063529": {
+    "user_id": 50017,
+    "conversation_id": "50017_1749063529",
+    "start_time": "2025-06-04T21:58:49.274981",
+    "end_time": "2025-06-04T21:58:49.274981",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50017",
+        "timestamp": 1749063529.274981
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50017",
+        "timestamp": 1749063529.274981
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50018_1749063529": {
+    "user_id": 50018,
+    "conversation_id": "50018_1749063529",
+    "start_time": "2025-06-04T21:58:49.284658",
+    "end_time": "2025-06-04T21:58:49.284658",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50018",
+        "timestamp": 1749063529.2846587
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50018",
+        "timestamp": 1749063529.2846587
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50019_1749063529": {
+    "user_id": 50019,
+    "conversation_id": "50019_1749063529",
+    "start_time": "2025-06-04T21:58:49.293237",
+    "end_time": "2025-06-04T21:58:49.293237",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50019",
+        "timestamp": 1749063529.2932377
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50019",
+        "timestamp": 1749063529.2932377
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50020_1749063529": {
+    "user_id": 50020,
+    "conversation_id": "50020_1749063529",
+    "start_time": "2025-06-04T21:58:49.303392",
+    "end_time": "2025-06-04T21:58:49.303392",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50020",
+        "timestamp": 1749063529.303393
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50020",
+        "timestamp": 1749063529.303393
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50021_1749063529": {
+    "user_id": 50021,
+    "conversation_id": "50021_1749063529",
+    "start_time": "2025-06-04T21:58:49.313067",
+    "end_time": "2025-06-04T21:58:49.313067",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50021",
+        "timestamp": 1749063529.313067
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50021",
+        "timestamp": 1749063529.313067
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50022_1749063529": {
+    "user_id": 50022,
+    "conversation_id": "50022_1749063529",
+    "start_time": "2025-06-04T21:58:49.322067",
+    "end_time": "2025-06-04T21:58:49.322067",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50022",
+        "timestamp": 1749063529.3220677
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50022",
+        "timestamp": 1749063529.3220677
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50023_1749063529": {
+    "user_id": 50023,
+    "conversation_id": "50023_1749063529",
+    "start_time": "2025-06-04T21:58:49.332180",
+    "end_time": "2025-06-04T21:58:49.332180",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50023",
+        "timestamp": 1749063529.332181
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50023",
+        "timestamp": 1749063529.332181
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50024_1749063529": {
+    "user_id": 50024,
+    "conversation_id": "50024_1749063529",
+    "start_time": "2025-06-04T21:58:49.342810",
+    "end_time": "2025-06-04T21:58:49.342810",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50024",
+        "timestamp": 1749063529.3428104
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50024",
+        "timestamp": 1749063529.3428104
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50025_1749063529": {
+    "user_id": 50025,
+    "conversation_id": "50025_1749063529",
+    "start_time": "2025-06-04T21:58:49.353002",
+    "end_time": "2025-06-04T21:58:49.353002",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50025",
+        "timestamp": 1749063529.353002
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50025",
+        "timestamp": 1749063529.353002
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50026_1749063529": {
+    "user_id": 50026,
+    "conversation_id": "50026_1749063529",
+    "start_time": "2025-06-04T21:58:49.365698",
+    "end_time": "2025-06-04T21:58:49.365698",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50026",
+        "timestamp": 1749063529.3656983
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50026",
+        "timestamp": 1749063529.3656983
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50027_1749063529": {
+    "user_id": 50027,
+    "conversation_id": "50027_1749063529",
+    "start_time": "2025-06-04T21:58:49.374971",
+    "end_time": "2025-06-04T21:58:49.374971",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50027",
+        "timestamp": 1749063529.3749714
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50027",
+        "timestamp": 1749063529.3749714
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50028_1749063529": {
+    "user_id": 50028,
+    "conversation_id": "50028_1749063529",
+    "start_time": "2025-06-04T21:58:49.385905",
+    "end_time": "2025-06-04T21:58:49.385905",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50028",
+        "timestamp": 1749063529.3859057
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50028",
+        "timestamp": 1749063529.3859057
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50029_1749063529": {
+    "user_id": 50029,
+    "conversation_id": "50029_1749063529",
+    "start_time": "2025-06-04T21:58:49.395807",
+    "end_time": "2025-06-04T21:58:49.395807",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50029",
+        "timestamp": 1749063529.3958077
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50029",
+        "timestamp": 1749063529.3958077
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50030_1749063529": {
+    "user_id": 50030,
+    "conversation_id": "50030_1749063529",
+    "start_time": "2025-06-04T21:58:49.404114",
+    "end_time": "2025-06-04T21:58:49.404114",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50030",
+        "timestamp": 1749063529.4041145
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50030",
+        "timestamp": 1749063529.4041145
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50031_1749063529": {
+    "user_id": 50031,
+    "conversation_id": "50031_1749063529",
+    "start_time": "2025-06-04T21:58:49.413425",
+    "end_time": "2025-06-04T21:58:49.413425",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50031",
+        "timestamp": 1749063529.4134257
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50031",
+        "timestamp": 1749063529.4134257
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50032_1749063529": {
+    "user_id": 50032,
+    "conversation_id": "50032_1749063529",
+    "start_time": "2025-06-04T21:58:49.422004",
+    "end_time": "2025-06-04T21:58:49.422004",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50032",
+        "timestamp": 1749063529.422004
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50032",
+        "timestamp": 1749063529.422004
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50033_1749063529": {
+    "user_id": 50033,
+    "conversation_id": "50033_1749063529",
+    "start_time": "2025-06-04T21:58:49.432042",
+    "end_time": "2025-06-04T21:58:49.432042",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50033",
+        "timestamp": 1749063529.4320421
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50033",
+        "timestamp": 1749063529.4320421
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50034_1749063529": {
+    "user_id": 50034,
+    "conversation_id": "50034_1749063529",
+    "start_time": "2025-06-04T21:58:49.440992",
+    "end_time": "2025-06-04T21:58:49.440992",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50034",
+        "timestamp": 1749063529.4409928
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50034",
+        "timestamp": 1749063529.4409928
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50035_1749063529": {
+    "user_id": 50035,
+    "conversation_id": "50035_1749063529",
+    "start_time": "2025-06-04T21:58:49.450085",
+    "end_time": "2025-06-04T21:58:49.450085",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50035",
+        "timestamp": 1749063529.4500859
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50035",
+        "timestamp": 1749063529.4500859
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50036_1749063529": {
+    "user_id": 50036,
+    "conversation_id": "50036_1749063529",
+    "start_time": "2025-06-04T21:58:49.460381",
+    "end_time": "2025-06-04T21:58:49.460381",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50036",
+        "timestamp": 1749063529.460382
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50036",
+        "timestamp": 1749063529.460382
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50037_1749063529": {
+    "user_id": 50037,
+    "conversation_id": "50037_1749063529",
+    "start_time": "2025-06-04T21:58:49.470088",
+    "end_time": "2025-06-04T21:58:49.470088",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50037",
+        "timestamp": 1749063529.4700887
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50037",
+        "timestamp": 1749063529.4700887
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50038_1749063529": {
+    "user_id": 50038,
+    "conversation_id": "50038_1749063529",
+    "start_time": "2025-06-04T21:58:49.479977",
+    "end_time": "2025-06-04T21:58:49.479977",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50038",
+        "timestamp": 1749063529.479978
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50038",
+        "timestamp": 1749063529.479978
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50039_1749063529": {
+    "user_id": 50039,
+    "conversation_id": "50039_1749063529",
+    "start_time": "2025-06-04T21:58:49.489760",
+    "end_time": "2025-06-04T21:58:49.489760",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50039",
+        "timestamp": 1749063529.4897609
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50039",
+        "timestamp": 1749063529.4897609
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50040_1749063529": {
+    "user_id": 50040,
+    "conversation_id": "50040_1749063529",
+    "start_time": "2025-06-04T21:58:49.500334",
+    "end_time": "2025-06-04T21:58:49.500334",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50040",
+        "timestamp": 1749063529.5003345
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50040",
+        "timestamp": 1749063529.5003345
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50041_1749063529": {
+    "user_id": 50041,
+    "conversation_id": "50041_1749063529",
+    "start_time": "2025-06-04T21:58:49.510048",
+    "end_time": "2025-06-04T21:58:49.510048",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50041",
+        "timestamp": 1749063529.5100486
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50041",
+        "timestamp": 1749063529.5100486
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50042_1749063529": {
+    "user_id": 50042,
+    "conversation_id": "50042_1749063529",
+    "start_time": "2025-06-04T21:58:49.519662",
+    "end_time": "2025-06-04T21:58:49.519662",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50042",
+        "timestamp": 1749063529.5196624
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50042",
+        "timestamp": 1749063529.5196624
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50043_1749063529": {
+    "user_id": 50043,
+    "conversation_id": "50043_1749063529",
+    "start_time": "2025-06-04T21:58:49.529851",
+    "end_time": "2025-06-04T21:58:49.529851",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50043",
+        "timestamp": 1749063529.529852
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50043",
+        "timestamp": 1749063529.529852
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50044_1749063529": {
+    "user_id": 50044,
+    "conversation_id": "50044_1749063529",
+    "start_time": "2025-06-04T21:58:49.542205",
+    "end_time": "2025-06-04T21:58:49.542205",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50044",
+        "timestamp": 1749063529.542205
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50044",
+        "timestamp": 1749063529.542205
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50045_1749063529": {
+    "user_id": 50045,
+    "conversation_id": "50045_1749063529",
+    "start_time": "2025-06-04T21:58:49.553022",
+    "end_time": "2025-06-04T21:58:49.553022",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50045",
+        "timestamp": 1749063529.5530224
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50045",
+        "timestamp": 1749063529.5530224
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50046_1749063529": {
+    "user_id": 50046,
+    "conversation_id": "50046_1749063529",
+    "start_time": "2025-06-04T21:58:49.566047",
+    "end_time": "2025-06-04T21:58:49.566047",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50046",
+        "timestamp": 1749063529.5660474
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50046",
+        "timestamp": 1749063529.5660474
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50047_1749063529": {
+    "user_id": 50047,
+    "conversation_id": "50047_1749063529",
+    "start_time": "2025-06-04T21:58:49.576922",
+    "end_time": "2025-06-04T21:58:49.576922",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50047",
+        "timestamp": 1749063529.576923
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50047",
+        "timestamp": 1749063529.576923
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50048_1749063529": {
+    "user_id": 50048,
+    "conversation_id": "50048_1749063529",
+    "start_time": "2025-06-04T21:58:49.586667",
+    "end_time": "2025-06-04T21:58:49.587667",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50048",
+        "timestamp": 1749063529.5876675
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50048",
+        "timestamp": 1749063529.5876675
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "50049_1749063529": {
+    "user_id": 50049,
+    "conversation_id": "50049_1749063529",
+    "start_time": "2025-06-04T21:58:49.597175",
+    "end_time": "2025-06-04T21:58:49.597175",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Сообщение от 50049",
+        "timestamp": 1749063529.5971754
+      },
+      {
+        "role": "bot",
+        "content": "Ответ для 50049",
+        "timestamp": 1749063529.5971754
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 0.0
+  },
+  "70000_1749063529": {
+    "user_id": 70000,
+    "conversation_id": "70000_1749063529",
+    "start_time": "2025-06-04T21:58:49.607703",
+    "end_time": "2025-06-04T21:58:49.607703",
+    "messages": [
+      {
+        "role": "user",
+        "content": "alert('xss')",
+        "timestamp": 1749063529.607703
+      },
+      {
+        "role": "bot",
+        "content": "Safe response",
+        "timestamp": 1749063529.607703
+      },
+      {
+        "role": "user",
+        "content": "'; DROP TABLE conversations; -",
+        "timestamp": 1749063529.607703
+      },
+      {
+        "role": "bot",
+        "content": "Safe response",
+        "timestamp": 1749063529.607703
+      },
+      {
+        "role": "user",
+        "content": "../../../etc/passwd",
+        "timestamp": 1749063529.607703
+      },
+      {
+        "role": "bot",
+        "content": "Safe response",
+        "timestamp": 1749063529.607703
+      },
+      {
+        "role": "user",
+        "content": "🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖",
+        "timestamp": 1749063529.607703
+      },
+      {
+        "role": "bot",
+        "content": "Safe response",
+        "timestamp": 1749063529.607703
+      }
+    ],
+    "outcome": "high_engagement",
+    "revenue_generated": 0.0
+  },
+  "999999_1749063529": {
+    "user_id": 999999,
+    "conversation_id": "999999_1749063529",
+    "start_time": "2025-06-04T21:58:49.618211",
+    "end_time": "2025-06-04T21:58:49.619211",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Привет! Что у тебя есть?",
+        "timestamp": 1749063529.618211
+      },
+      {
+        "role": "bot",
+        "content": "Привет! У меня много интересного контента 😘",
+        "timestamp": 1749063529.6192114
+      },
+      {
+        "role": "system",
+        "content": "Purchase made: $25.0",
+        "timestamp": 1749063529.6192114
+      }
+    ],
+    "outcome": "purchase_made",
+    "revenue_generated": 25.0
+  }
+}

@@ -1,0 +1,88 @@
+2025-06-05 22:46:04.019 | ERROR    | __main__:_log:148 - Тестовая ошибка
+2025-06-05 22:52:17.162 | ERROR    | enhanced_logging:_log:148 - ❌ TELEGRAM_BOT_TOKEN не найден в конфигурации
+2025-06-05 23:26:10.217 | ERROR    | enhanced_logging:_log:148 - ❌ TELEGRAM_BOT_TOKEN не найден в конфигурации
+2025-06-05 23:33:58.078 | ERROR    | enhanced_logging:_log:148 - Ошибка инициализации GroqContentGenerator: Ошибка инициализации Groq клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-05 23:33:58.078 | ERROR    | enhanced_logging:_log:148 - Ошибка получения генератора контента: Ошибка инициализации Groq клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-05 23:33:58.079 | ERROR    | enhanced_logging:_log:148 - Ошибка в глобальной функции generate_reply_variants: Не удалось инициализировать генератор: Ошибка инициализации Groq клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-05 23:46:45.533 | ERROR    | enhanced_logging:_log:148 - ❌ TELEGRAM_BOT_TOKEN не найден в конфигурации
+2025-06-06 00:03:52.421 | ERROR    | enhanced_logging:log_error:170 - ❌ Ошибка инициализации бота: duplicate base class TimeoutError
+Traceback (most recent call last):
+
+  File "C:\Users\user\of_assistant_bot\main_bot.py", line 709, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001DFD8E774C0>
+    │       └ <function run at 0x000001DFD9389E40>
+    └ <module 'asyncio' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\...
+
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001DFD9BB57E0>
+           │      └ <function Runner.run at 0x000001DFD94099E0>
+           └ <asyncio.runners.Runner object at 0x000001DFDB464350>
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at C:\Users\user\of_assistant_bot\main_bot.py:683> cb=[_run_until_complete_c...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001DFD9403600>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001DFDB464350>
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 641, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001DFD94C7060>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 608, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001DFD94093A0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 1936, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001DFD93336A0>
+    └ <Handle <TaskStepMethWrapper object at 0x000001DFDB5F9CC0>()>
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x000001DFDB5F9CC0>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x000001DFDB5F9CC0>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x000001DFDB5F9CC0>()>
+
+  File "C:\Users\user\of_assistant_bot\main_bot.py", line 683, in main
+    bot = TelegramBot()
+          └ <class '__main__.TelegramBot'>
+
+> File "C:\Users\user\of_assistant_bot\main_bot.py", line 98, in __init__
+    self.bot = AsyncTeleBot(
+    │          └ <class '__main__.SafeAsyncTeleBot'>
+    └ <__main__.TelegramBot object at 0x000001DFDB4646D0>
+
+  File "C:\Users\user\of_assistant_bot\main_bot.py", line 23, in __init__
+    from telebot.async_telebot import AsyncTeleBot as _AsyncTeleBot
+         │                            └ <class '__main__.SafeAsyncTeleBot'>
+         └ <module 'telebot' from 'C:\\Users\\user\\of_assistant_bot\\venv\\Lib\\site-packages\\telebot\\__init__.py'>
+
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\telebot\async_telebot.py", line 16, in <module>
+    from telebot.asyncio_storage import StateMemoryStorage, StatePickleStorage, StateStorageBase
+         └ <module 'telebot' from 'C:\\Users\\user\\of_assistant_bot\\venv\\Lib\\site-packages\\telebot\\__init__.py'>
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\telebot\asyncio_storage\__init__.py", line 2, in <module>
+    from telebot.asyncio_storage.redis_storage import StateRedisStorage
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\telebot\asyncio_storage\redis_storage.py", line 7, in <module>
+    import aioredis
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\aioredis\__init__.py", line 1, in <module>
+    from aioredis.client import Redis, StrictRedis
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\aioredis\client.py", line 32, in <module>
+    from aioredis.connection import (
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\aioredis\connection.py", line 33, in <module>
+    from .exceptions import (
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\aioredis\exceptions.py", line 14, in <module>
+    class TimeoutError(asyncio.TimeoutError, builtins.TimeoutError, RedisError):
+                       │       │             │        │             └ <class 'aioredis.exceptions.RedisError'>
+                       │       │             │        └ <class 'TimeoutError'>
+                       │       │             └ <module 'builtins' (built-in)>
+                       │       └ <class 'TimeoutError'>
+                       └ <module 'asyncio' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\...
+
+TypeError: duplicate base class TimeoutError
+2025-06-06 00:04:54.988 | ERROR    | enhanced_logging:_log:148 - ERROR: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: can't parse entities: Unsupported start tag "твое" at byte offset 174
+2025-06-06 00:04:54.988 | ERROR    | enhanced_logging:_log:148 - Ошибка ответа пользователю 377917978: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: can't parse entities: Unsupported start tag "твое" at byte offset 174

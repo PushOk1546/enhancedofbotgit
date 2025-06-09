@@ -1,0 +1,216 @@
+2025-06-05 22:46:04.014 | INFO     | __main__:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:46:04.015 | INFO     | __main__:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:46:04.015 | INFO     | __main__:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:46:04.018 | INFO     | __main__:_log:148 - 🚀 Логгер DemoLogger инициализирован
+2025-06-05 22:46:04.018 | INFO     | __main__:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:46:04.018 | INFO     | __main__:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:46:04.019 | INFO     | __main__:_log:148 - Тестовое информационное сообщение
+2025-06-05 22:46:04.019 | WARNING  | __main__:_log:148 - Тестовое предупреждение
+2025-06-05 22:46:04.019 | ERROR    | __main__:_log:148 - Тестовая ошибка
+2025-06-05 22:46:04.020 | INFO     | __main__:_log:148 - 👤 Пользователь 12345 | Действие: start_command | Детали: {'username': 'test_user'}
+2025-06-05 22:46:04.020 | INFO     | __main__:_log:148 - 🌐 API Groq | /chat/completions | Статус: success | Время: 0.15с
+2025-06-05 22:46:04.020 | INFO     | __main__:_log:148 - 🤖 Событие: startup | Бот успешно запущен
+2025-06-05 22:46:04.021 | INFO     | __main__:_log:148 - ⏱️ Операция: message_processing | ✅ Успешно | Время: 0.045с
+2025-06-05 22:46:04.021 | INFO     | __main__:_log:148 - [message_handler] Обработка входящего сообщения
+2025-06-05 22:46:04.022 | INFO     | __main__:_log:148 - Статистика логов: {'log_directory': 'C:\\Users\\user\\of_assistant_bot\\logs', 'log_files_count': 2, 'log_files': [{'name': 'bot.log', 'size_mb': 0.0, 'modified': '2025-06-05T22:46:04.021262'}, {'name': 'errors.log', 'size_mb': 0.0, 'modified': '2025-06-05T22:46:04.020228'}], 'total_size_mb': 0.0}
+2025-06-05 22:46:12.407 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:46:12.407 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:46:12.408 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:46:30.198 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:46:30.198 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:46:30.198 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:50:30.088 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:50:30.088 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:50:30.088 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:51:50.281 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:51:50.281 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:51:50.281 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:52:17.156 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:52:17.156 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:52:17.157 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:52:17.161 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер TelegramBot инициализирован
+2025-06-05 22:52:17.162 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:52:17.162 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:52:17.162 | INFO     | enhanced_logging:_log:148 - 🤖 Инициализация Telegram бота...
+2025-06-05 22:52:17.162 | ERROR    | enhanced_logging:_log:148 - ❌ TELEGRAM_BOT_TOKEN не найден в конфигурации
+2025-06-05 22:52:45.738 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:52:45.738 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:52:45.739 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:54:31.192 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:54:31.193 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:54:31.193 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:54:52.757 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:54:52.758 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:54:52.758 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:56:52.837 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:56:52.837 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:56:52.838 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:57:01.416 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:57:01.416 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:57:01.417 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 22:59:59.113 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 22:59:59.113 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 22:59:59.113 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:00:04.660 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:00:04.661 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:00:04.661 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:04:02.468 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:04:02.468 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:04:02.468 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:05:18.933 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:05:18.933 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:05:18.933 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:05:24.369 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:05:24.369 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:05:24.370 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:17:26.587 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:17:26.588 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:17:26.588 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:26:09.963 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:26:09.963 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:26:09.963 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:26:10.216 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер TelegramBot инициализирован
+2025-06-05 23:26:10.217 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:26:10.217 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:26:10.217 | INFO     | enhanced_logging:_log:148 - 🤖 Инициализация Telegram бота...
+2025-06-05 23:26:10.217 | ERROR    | enhanced_logging:_log:148 - ❌ TELEGRAM_BOT_TOKEN не найден в конфигурации
+2025-06-05 23:33:58.076 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:33:58.076 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:33:58.078 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:33:58.078 | ERROR    | enhanced_logging:_log:148 - Ошибка инициализации GroqContentGenerator: Ошибка инициализации Groq клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-05 23:33:58.078 | ERROR    | enhanced_logging:_log:148 - Ошибка получения генератора контента: Ошибка инициализации Groq клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-05 23:33:58.079 | ERROR    | enhanced_logging:_log:148 - Ошибка в глобальной функции generate_reply_variants: Не удалось инициализировать генератор: Ошибка инициализации Groq клиента: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-06-05 23:34:49.122 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:34:49.122 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:34:49.123 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:35:47.409 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:35:47.409 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:35:47.410 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:35:54.340 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:35:54.340 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:35:54.340 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:36:41.728 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:36:41.728 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:36:41.728 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:36:49.554 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:36:49.554 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:36:49.554 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:37:59.766 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:37:59.766 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:37:59.767 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:38:06.998 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:38:06.998 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:38:06.998 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:40:41.066 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:40:41.066 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:40:41.067 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:41:53.489 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:41:53.489 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:41:53.490 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:46:45.274 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-05 23:46:45.274 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:46:45.274 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:46:45.533 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер TelegramBot инициализирован
+2025-06-05 23:46:45.533 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-05 23:46:45.533 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-05 23:46:45.533 | INFO     | enhanced_logging:_log:148 - 🤖 Инициализация Telegram бота...
+2025-06-05 23:46:45.533 | ERROR    | enhanced_logging:_log:148 - ❌ TELEGRAM_BOT_TOKEN не найден в конфигурации
+2025-06-06 00:03:51.976 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-06 00:03:51.977 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-06 00:03:51.977 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-06 00:03:52.217 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер TelegramBot инициализирован
+2025-06-06 00:03:52.218 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-06 00:03:52.218 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-06 00:03:52.218 | INFO     | enhanced_logging:_log:148 - 🤖 Инициализация Telegram бота...
+2025-06-06 00:03:52.421 | ERROR    | enhanced_logging:log_error:170 - ❌ Ошибка инициализации бота: duplicate base class TimeoutError
+Traceback (most recent call last):
+
+  File "C:\Users\user\of_assistant_bot\main_bot.py", line 709, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001DFD8E774C0>
+    │       └ <function run at 0x000001DFD9389E40>
+    └ <module 'asyncio' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\...
+
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001DFD9BB57E0>
+           │      └ <function Runner.run at 0x000001DFD94099E0>
+           └ <asyncio.runners.Runner object at 0x000001DFDB464350>
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at C:\Users\user\of_assistant_bot\main_bot.py:683> cb=[_run_until_complete_c...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001DFD9403600>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001DFDB464350>
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 641, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001DFD94C7060>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 608, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001DFD94093A0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 1936, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001DFD93336A0>
+    └ <Handle <TaskStepMethWrapper object at 0x000001DFDB5F9CC0>()>
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x000001DFDB5F9CC0>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x000001DFDB5F9CC0>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x000001DFDB5F9CC0>()>
+
+  File "C:\Users\user\of_assistant_bot\main_bot.py", line 683, in main
+    bot = TelegramBot()
+          └ <class '__main__.TelegramBot'>
+
+> File "C:\Users\user\of_assistant_bot\main_bot.py", line 98, in __init__
+    self.bot = AsyncTeleBot(
+    │          └ <class '__main__.SafeAsyncTeleBot'>
+    └ <__main__.TelegramBot object at 0x000001DFDB4646D0>
+
+  File "C:\Users\user\of_assistant_bot\main_bot.py", line 23, in __init__
+    from telebot.async_telebot import AsyncTeleBot as _AsyncTeleBot
+         │                            └ <class '__main__.SafeAsyncTeleBot'>
+         └ <module 'telebot' from 'C:\\Users\\user\\of_assistant_bot\\venv\\Lib\\site-packages\\telebot\\__init__.py'>
+
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\telebot\async_telebot.py", line 16, in <module>
+    from telebot.asyncio_storage import StateMemoryStorage, StatePickleStorage, StateStorageBase
+         └ <module 'telebot' from 'C:\\Users\\user\\of_assistant_bot\\venv\\Lib\\site-packages\\telebot\\__init__.py'>
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\telebot\asyncio_storage\__init__.py", line 2, in <module>
+    from telebot.asyncio_storage.redis_storage import StateRedisStorage
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\telebot\asyncio_storage\redis_storage.py", line 7, in <module>
+    import aioredis
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\aioredis\__init__.py", line 1, in <module>
+    from aioredis.client import Redis, StrictRedis
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\aioredis\client.py", line 32, in <module>
+    from aioredis.connection import (
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\aioredis\connection.py", line 33, in <module>
+    from .exceptions import (
+  File "C:\Users\user\of_assistant_bot\venv\Lib\site-packages\aioredis\exceptions.py", line 14, in <module>
+    class TimeoutError(asyncio.TimeoutError, builtins.TimeoutError, RedisError):
+                       │       │             │        │             └ <class 'aioredis.exceptions.RedisError'>
+                       │       │             │        └ <class 'TimeoutError'>
+                       │       │             └ <module 'builtins' (built-in)>
+                       │       └ <class 'TimeoutError'>
+                       └ <module 'asyncio' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\\...
+
+TypeError: duplicate base class TimeoutError
+2025-06-06 00:04:07.186 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-06 00:04:07.187 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-06 00:04:07.187 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-06 00:04:07.476 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер TelegramBot инициализирован
+2025-06-06 00:04:07.476 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-06 00:04:07.476 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-06 00:04:07.477 | INFO     | enhanced_logging:_log:148 - 🤖 Инициализация Telegram бота...
+2025-06-06 00:04:07.893 | INFO     | enhanced_logging:_log:148 - ✅ AsyncTeleBot успешно инициализирован
+2025-06-06 00:04:07.894 | INFO     | enhanced_logging:_log:148 - 🚀 Бот готов к запуску
+2025-06-06 00:04:07.895 | INFO     | enhanced_logging:_log:148 - 🚀 Запуск polling режима...
+2025-06-06 00:04:54.812 | INFO     | enhanced_logging:_log:148 - 👤 Пользователь 377917978 | Действие: start_command | Детали: {'username': 'tylerthecrea', 'first_name': 'Арабский', 'chat_id': 377917978, 'chat_type': 'private'}
+2025-06-06 00:04:54.988 | ERROR    | enhanced_logging:_log:148 - ERROR: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: can't parse entities: Unsupported start tag "твое" at byte offset 174
+2025-06-06 00:04:54.988 | ERROR    | enhanced_logging:_log:148 - Ошибка ответа пользователю 377917978: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: can't parse entities: Unsupported start tag "твое" at byte offset 174
