@@ -16,7 +16,7 @@ from response_generator import response_generator, GenerationMethod
 from enhanced_commands import initialize_enhanced_commands
 
 # New security modules
-from rate_limiter import rate_limit_middleware
+from src.core.rate_limiter import rate_limit_middleware
 from input_validator import input_validator, validate_message
 
 # Existing modules  

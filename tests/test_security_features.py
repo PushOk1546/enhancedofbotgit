@@ -9,7 +9,7 @@ import time
 from typing import Dict, List
 
 # Import security modules
-from rate_limiter import (
+from src.core.rate_limiter import (
     RateLimiter,
     RateLimitConfig,
     InMemoryRateLimitRepository,
