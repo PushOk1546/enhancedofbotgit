@@ -229,3 +229,6 @@ TypeError: duplicate base class TimeoutError
 2025-06-09 21:21:59.310 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
 2025-06-09 21:21:59.311 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
 2025-06-09 21:21:59.311 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO
+2025-06-09 21:34:22.380 | INFO     | enhanced_logging:_log:148 - 🚀 Логгер BotLogger инициализирован
+2025-06-09 21:34:22.380 | INFO     | enhanced_logging:_log:148 - 📁 Директория логов: C:\Users\user\of_assistant_bot\logs
+2025-06-09 21:34:22.382 | INFO     | enhanced_logging:_log:148 - 📊 Уровень логирования: INFO

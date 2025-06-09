@@ -118,7 +118,7 @@ source venv/bin/activate  # для Linux/Mac
 venv\Scripts\activate     # для Windows
 
 # Установка зависимостей
-pip install -r requirements_simple.txt
+pip install -r requirements.txt
 
 # Запуск бота
 python main_bot.py
@@ -212,7 +212,7 @@ pytest --asyncio-mode=auto
 ### ❌ Import errors:
 ```bash
 # Обновление зависимостей
-pip install -r requirements_simple.txt --upgrade
+pip install -r requirements.txt --upgrade
 
 # Проверка версий
 pip freeze | grep -E "pyTelegramBotAPI|groq"

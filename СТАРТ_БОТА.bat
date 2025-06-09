@@ -51,7 +51,7 @@ echo 📱 Бот готов к работе!
 echo 🛑 Для остановки нажмите Ctrl+C
 echo.
 
-python perfect_bot.py
+python main.py
 
 echo.
 echo 👋 Бот остановлен. До свидания!
