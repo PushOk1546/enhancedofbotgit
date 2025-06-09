@@ -48,7 +48,7 @@ class SystemTester:
         
         try:
             # Тест импортов
-            from config import MODELS, FLIRT_STYLES, PPV_STYLES, SURVEY_STEPS
+            from config.config import MODELS, FLIRT_STYLES, PPV_STYLES, SURVEY_STEPS
             from utils import get_main_keyboard, get_flirt_style_keyboard, get_ppv_style_keyboard
             from api import generate_groq_response
             print("✅ Все модули импортированы")
@@ -212,18 +212,18 @@ class SystemTester:
             for callback_data in test_callbacks:
                 if callback_data.startswith("model_"):
                     model_key = callback_data.replace("model_", "")
-                    from config import MODELS
+                    from config.config import MODELS
                     assert model_key in MODELS, f"Модель {model_key} не найдена"
                     
                 elif callback_data.startswith("flirt_style_"):
                     style_id = callback_data.replace("flirt_style_", "")
-                    from config import FLIRT_STYLES
+                    from config.config import FLIRT_STYLES
                     found = any(info['id'] == style_id for info in FLIRT_STYLES.values())
                     assert found, f"Флирт стиль {style_id} не найден"
                     
                 elif callback_data.startswith("ppv_style_"):
                     style_name = callback_data.replace("ppv_style_", "")
-                    from config import PPV_STYLES
+                    from config.config import PPV_STYLES
                     assert style_name in PPV_STYLES, f"PPV стиль {style_name} не найден"
                     
                 elif callback_data.startswith("survey_"):
@@ -231,7 +231,7 @@ class SystemTester:
                     parts = survey_data.split('_')
                     if len(parts) >= 2:
                         step = '_'.join(parts[:-1])
-                        from config import SURVEY_STEPS
+                        from config.config import SURVEY_STEPS
                         assert step in SURVEY_STEPS, f"Шаг опроса {step} не найден"
                     
                 elif callback_data.startswith("chat_"):

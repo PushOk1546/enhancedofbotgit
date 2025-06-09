@@ -12,7 +12,7 @@ from chat_utils import (
     format_chat_info, format_chat_memory, format_chat_analytics, create_chat_context_prompt
 )
 from api import generate_groq_response
-from config import MODELS
+from config.config import MODELS
 from datetime import datetime
 
 logger = logging.getLogger("bot_logger")

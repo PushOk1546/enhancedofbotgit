@@ -7,7 +7,7 @@ import time
 import logging
 from functools import wraps
 from typing import Dict, List, Optional
-from config import ADMIN_IDS
+from config.config import ADMIN_IDS
 
 logger = logging.getLogger("security")
 

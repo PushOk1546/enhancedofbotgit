@@ -343,7 +343,7 @@ class HealthChecker:
             start_time = time.time()
             
             from security import security_stats, rate_limiter
-            from config import ADMIN_IDS
+            from config.config import ADMIN_IDS
             
             # Получаем статистику безопасности
             stats = security_stats.get_stats()

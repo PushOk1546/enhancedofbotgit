@@ -29,7 +29,7 @@ async def test_p0_security_fixes():
             admin_required, validate_user_input, RateLimiter, 
             secure_format_prompt, security_stats
         )
-        from config import ADMIN_IDS
+        from config.config import ADMIN_IDS
         
         # Тест 1: Admin авторизация
         print("🧪 Тест 1.1: Admin авторизация...")

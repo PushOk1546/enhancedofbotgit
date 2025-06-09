@@ -14,7 +14,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 try:
     from bot import BotManager
-    from config import BOT_TOKEN, GROQ_KEY
+    from config.config import BOT_TOKEN, GROQ_KEY
     import logging
 except ImportError as e:
     print(f"❌ Import error: {e}")

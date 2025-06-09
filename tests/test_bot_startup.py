@@ -16,7 +16,7 @@ def test_bot_startup():
     try:
         # 1. Проверяем конфигурацию
         print("🔍 Проверяем конфигурацию...")
-        from config import BOT_TOKEN, GROQ_KEY, MODELS, FLIRT_STYLES, PPV_STYLES
+        from config.config import BOT_TOKEN, GROQ_KEY, MODELS, FLIRT_STYLES, PPV_STYLES
         
         if not BOT_TOKEN:
             print("⚠️  BOT_TOKEN не установлен в .env")
