@@ -100,4 +100,7 @@ uploads/
 
 # Test outputs
 test_outputs/
-test_logs/ 
+test_logs/
+
+# Git credentials (содержит чувствительные токены)
+.git-credentials 
