@@ -12,7 +12,7 @@ from unittest.mock import Mock, AsyncMock
 sys.path.insert(0, str(Path(__file__).parent))
 
 from bot import BotManager
-from config import FLIRT_STYLES
+from config.config import FLIRT_STYLES
 
 def test_flirt_styles_config():
     """Проверяем конфигурацию стилей флирта"""

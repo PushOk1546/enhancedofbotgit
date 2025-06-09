@@ -20,7 +20,7 @@ def test_imports():
     
     try:
         # Core modules
-        from config import BOT_TOKEN, MODELS, SURVEY_STEPS, GROQ_KEY
+        from config.config import BOT_TOKEN, MODELS, SURVEY_STEPS, GROQ_KEY
         print("   ✅ config module")
         
         from bot import BotManager
@@ -53,7 +53,7 @@ def test_config():
     print("\n🧪 Testing configuration...")
     
     try:
-        from config import BOT_TOKEN, MODELS, SURVEY_STEPS, GROQ_KEY, FLIRT_STYLES, PPV_STYLES
+        from config.config import BOT_TOKEN, MODELS, SURVEY_STEPS, GROQ_KEY, FLIRT_STYLES, PPV_STYLES
         
         # Test required configs exist
         assert MODELS, "MODELS is empty"
@@ -182,7 +182,7 @@ def test_survey_parsing():
         value = data_without_prefix[last_underscore_idx + 1:]  # "photos"
         
         # Validate
-        from config import SURVEY_STEPS
+        from config.config import SURVEY_STEPS
         assert step in SURVEY_STEPS, f"Step '{step}' not found in SURVEY_STEPS"
         assert step == "content_types", f"Expected 'content_types', got '{step}'"
         assert value == "photos", f"Expected 'photos', got '{value}'"

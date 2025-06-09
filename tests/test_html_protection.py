@@ -83,7 +83,7 @@ def test_new_eco_model():
     print("\n\n💚 ТЕСТ НОВОЙ ЭКО-МОДЕЛИ")
     print("=" * 50)
     
-    from config import MODELS
+    from config.config import MODELS
     from state_manager import StateManager
     
     # Проверяем модели

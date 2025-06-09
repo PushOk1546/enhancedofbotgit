@@ -12,7 +12,7 @@ from pathlib import Path
 # Добавляем путь к модулям бота
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from config import SURVEY_STEPS
+from config.config import SURVEY_STEPS
 from utils import get_survey_keyboard
 
 def test_survey_parsing():

@@ -9,7 +9,7 @@ __version__ = "1.0.0"
 __author__ = "OF Assistant Bot Team"
 
 # Основные модули пакета
-from .config import BOT_TOKEN, MODELS, FLIRT_STYLES
+from .config.config import BOT_TOKEN, MODELS, FLIRT_STYLES
 from .models import UserState, PPVReminder, UserPreferences
 from .state_manager import StateManager
 from .utils import setup_logging, get_main_keyboard

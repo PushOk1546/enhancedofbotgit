@@ -14,7 +14,7 @@ from utils import (
     get_ppv_style_keyboard
 )
 from api import generate_groq_response
-from config import (
+from config.config import (
     MODELS, FLIRT_STYLES, RELATIONSHIP_STAGES, SURVEY_STEPS, PPV_STYLES
 )
 from security import (

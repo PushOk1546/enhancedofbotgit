@@ -6,7 +6,7 @@
 
 import asyncio
 from dataclasses import dataclass
-from config import FLIRT_STYLES, PPV_STYLES, MODELS, SURVEY_STEPS
+from config.config import FLIRT_STYLES, PPV_STYLES, MODELS, SURVEY_STEPS
 from utils import get_flirt_style_keyboard, get_ppv_style_keyboard, get_model_keyboard, get_survey_keyboard
 
 @dataclass

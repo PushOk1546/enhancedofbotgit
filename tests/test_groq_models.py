@@ -7,7 +7,7 @@
 import asyncio
 import sys
 from api import generate_groq_response
-from config import MODELS
+from config.config import MODELS
 
 async def test_groq_models():
     """Тестирует все модели Groq"""

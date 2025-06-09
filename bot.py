@@ -13,7 +13,7 @@ from telebot import types, asyncio_helper
 from dotenv import load_dotenv
 
 # Импорты модулей проекта
-from config import BOT_TOKEN, MODELS, SURVEY_STEPS, GROQ_KEY, FLIRT_STYLES, PPV_STYLES
+from config.config import BOT_TOKEN, MODELS, SURVEY_STEPS, GROQ_KEY, FLIRT_STYLES, PPV_STYLES
 from utils import (
     setup_logging, get_model_keyboard, get_survey_keyboard, 
     get_flirt_style_keyboard, get_main_keyboard, get_ppv_style_keyboard,

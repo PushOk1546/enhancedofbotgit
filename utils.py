@@ -9,7 +9,7 @@ from pathlib import Path
 from logging.handlers import RotatingFileHandler
 from pythonjsonlogger import jsonlogger
 from telebot import types
-from config import (
+from config.config import (
     LOG_DIR, LOG_FILE, MAX_LOG_SIZE, LOG_BACKUP_COUNT,
     MODELS, FLIRT_STYLES, RELATIONSHIP_STAGES, SURVEY_STEPS, PPV_STYLES
 )
